@@ -23,9 +23,9 @@ body {
     color: #264351;
 }
 
-#navbar-desktop div, #navbar-mobile div {
+/*#navbar-desktop div, #navbar-mobile div {
     border-radius: 6px;
-}
+}*/
 
 #navbar-desktop div:hover, #navbar-mobile div:hover {
     background-color:  #73ca9c;
