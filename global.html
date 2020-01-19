@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="recursos/barraNavegacion.css">
+        <link rel="stylesheet" href="recursos/informacion.css">
+        <link rel="stylesheet" href="recursos/estilo.css">
+        <link rel="shortcut icon" href="recursos/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="recursos/favicon.ico" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Bitter:400i|Fira+Code|Roboto|Ubuntu|Ubuntu+Mono&display=swap" rel="stylesheet">  
+
+        <!-- Chrome, Firefox OS and Opera -->
+        <meta name="theme-color" content="#d8d8d8">
+        <!-- Windows Phone -->
+        <meta name="msapplication-navbutton-color" content="#d8d8d8">
+        <!-- iOS Safari -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="#d8d8d8">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+        <!--Importación de librerías-->
+        <script src="CalculadoraAPI/calculadora.js"></script>
+        <script src="CalculadoraAPI/editorDeTabla.js"></script>
+        <script src="CalculadoraAPI/extractorDeDatos.js"></script>
+        <script src="CalculadoraAPI/traductorCSV.js"></script>
+
+        <!--scripts-->
+        <script>
+            calculadora = new CalculadoraIndice();
+            traductorCSV = new TraductorDeCSV();
+            editorDeTabla = new EditorDeTabla();
+            extractorDeDatos = new ExtractorDeDatos();
+
+            function iniciarPagina(){
+                boton = document.getElementById("botonDeSeleccion");
+                boton.value = "Global";
+                boton.innerHTML = "Global";
+
+                cambiarTabla();
+            }
+
+            function extraerDeCSV(){
+                archivo = document.getElementById("archivo").files[0];
+
+                if((archivo.name).includes(".csv")){
+                    console.log(archivo.name);
+                    const lector = new FileReader();
+
+                    lector.onload = function(){
+                        editorDeTabla.llenarDatos(traductorCSV.csv2arreglo(lector.result))
+                        calcularIndice()
+
+                    };
+
+                    lector.readAsText(archivo);
+
+                    //calcularIndice();
+                }
+                else{
+                    alert("Archivo no valido. Por favor ingresar uno con la terminación '.csv'.");
+                }
+
+            }
+
+            function cambiarTabla(){
+                editorDeTabla.editarTabla();
+            }
+
+            function calcularIndice(){
+                arreglo = extractorDeDatos.extraerDatos();
+
+                if(arreglo){
+                    document.getElementById("indice").value = calculadora.calcularIndicePeriodo(arreglo);
+                    
+                    redondeado = (parseFloat(calculadora.calcularIndicePeriodo(arreglo))).toFixed(0);
+                    elemento = document.getElementById("indiceRedondeado");
+                    elemento.value = redondeado;
+
+                    if(redondeado < 65){
+                        elemento.style = "color: crimson;";
+                    }
+                    else{
+                        elemento.style= "color: #009688;";
+                    }
+
+                    document.getElementById("resultados").style = "transition: all 1s ease-out;";
+                    document.getElementById("resultados").style.display = "block";
+                }
+               
+            }
+
+            function guardar(){
+                arreglo = extractorDeDatos.extraerDatos("guardar");
+
+                contenido = traductorCSV.arreglo2csv(arreglo);
+                download("notas.csv", contenido);
+            }
+
+            function download(filename, text) {
+                var element = document.createElement('a');
+                element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(text));
+                element.setAttribute('download', filename);
+
+                element.style.display = 'none';
+                document.body.appendChild(element);
+
+                element.click();
+
+                document.body.removeChild(element);
+            }
+
+            function agregar(){
+                elemento = document.getElementById("numeroDeClases");
+                valorActual = parseInt(elemento.value);
+
+                if( (valorActual+1) < ( parseInt(elemento.max) + 1 ) ){
+                    elemento.value = valorActual + 1;
+                    cambiarTabla();
+                }
+            }
+
+            function quitar(){
+                elemento = document.getElementById("numeroDeClases");
+                valorActual = parseInt(elemento.value);
+
+                if(valorActual > parseInt(elemento.min)){
+                    elemento.value = valorActual - 1;
+                    cambiarTabla();
+                }
+            }
+
+            function limitarDatos(){
+                elemento = document.getElementById("numeroDeClases");
+                valorActual = parseInt(elemento.value);
+
+                if( valorActual > parseInt(elemento.max) ){
+                    elemento.value = parseInt(elemento.max);
+                }
+
+                cambiarTabla();
+            }
+
+        </script>
+
+        <title>Indice Global - Calculadora de Indice Academico</title>
+    </head>
+
+    <body onload="iniciarPagina()">
+
+        <!--Cuerpo de la clase-->
+        <div class="jumbotron" id="cuerpo">
+            <div class="container col-sm-4"><h1><strong>Indice Global:</strong></h1></div>
+            <div class="container text-center" id="creadorTabla">
+                <div class="row col-sm-6">
+                    <div class="col"><h4>Total de clases cursadas (incluyendo las reprobadas):</h4></div>
+                    <div class="container col">
+                        <div class="talbe responsive">
+                            <table class="table" id="spinner">
+                                <tbody>
+                                   <tr>
+                                        <td>
+                                            <button id="menos" class="botonesDeSpinner" onclick="quitar()">-</button>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="number" id="numeroDeClases" min="1" max="70" value="20" oninput="limitarDatos()">
+                                        </td>
+                                        <td>
+                                            <button id="mas" class="botonesDeSpinner" onclick="agregar()">+</button>
+                                        </td>
+                                    </tr> 
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row justify-content-center">
+                    <!--Tabla de Datos-->
+                    <div class="container col-sm-6">
+                        <div class="table responsive">
+                            <table class="table table-bordered" id="tabla">
+                                <thead>
+                                    <tr>
+                                        <th>Clase</th>
+                                        <th>Nota</th>
+                                        <th>UV</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="datos">
+                                    <tr>
+                                        <td>
+                                            <input class="form-control" type="text" placeholder="Clase1" style="font-style: italic;"/>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="number" min="0" max ="100"/>
+                                        </td>
+                                        <td>
+                                            <input class="form-control" type="number" min="1" max="7"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!--Resultados-->
+                    <div class="container col-sm-4">
+                        <div class="table responsive" id="resultados">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p>Indice Global:</p>
+                                            <input class="form-control" type="text" readonly ="true" id="indice" class="redondeado"/>
+                                              
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p id="titulo">Redondeado:</p>
+                                            <input class="form-control" type="text" readonly="true" id="indiceRedondeado" class="redondeado"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <br><br>
+                        <div class="table responsive" id="miscelaneos">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <button type="button" onclick="calcularIndice()" id="botonCalcular">Calcular Indice Global</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="archivo" id="subir">Utilizar archivo CSV</label>
+                                            <input class="botones" type="file" id="archivo" oninput="extraerDeCSV()" style="display: none;"/>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="guardar" id="bajar">Guardar datos como archivo CSV</label>
+                                            <button class="botones" type="button" onclick="guardar()" id="guardar" style="display: none;">Guardar tabla en archivo csv</button class="botones">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        
+                    </div>
+
+                </div>
+
+
+            </div>
+            
+            
+            
+        </div>
+
+        <!--Barra de Navegación Escritorio-->
+        <div class="row fixed-bottom bg-dark" id="navbar-desktop">
+            <div class="col-sm-1"><a href="información.html">
+                <img src="recursos/info.png">
+            </a></div>
+            <div class="col-sm-3" id="textoNormal"><a>Indice:</a></div>
+            <div class="col-sm-4" id="seleccionado"><a href="global.html">Global</a></div>
+            <div class="col-sm-4"><a href="index.html">Periodo</a></div>
+        </div>
+
+        <!--Barra de Navegación Móvil-->
+        <div class="row fixed-bottom bg-dark" id="navbar-mobile">
+            <div class="col-2" style="padding-left: 12px; width: 25%;"><a href="información.html">
+                <img src="recursos/info.png">
+            </a></div>
+            <div class="col-4" id="textoNormal"><a>Indice:</a></div>
+            <div class="col">
+                <div class="dropup">
+                    <button type="button" value="Seleccionar" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="botonDeSeleccion"></button>
+                    <div class="dropdown-menu" id="opciones">
+                        <a class="dropdown-item" href="global.html" id="seleccionado">Global</a>
+                        <a class="dropdown-item" href="index.html">Periodo</a>
+                    </div>
+                </div>
+            </div>
+
+    </body>
+
+</html>

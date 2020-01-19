@@ -1,0 +1,20 @@
+#informacion {
+    background-color: #d8d8d8;
+    color: #264351;
+    font-family: 'Fira Code', monospace;
+    text-align: center;
+    text-decoration: none;
+}
+
+table {
+    text-align: left;
+}
+
+table tbody tr td a {
+    color: #264351;
+    text-decoration: none;
+}
+
+table tbody tr td a:hover {
+    color: coral;
+}

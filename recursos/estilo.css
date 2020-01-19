@@ -1,0 +1,330 @@
+body {
+    display: inline-block;
+    z-index: 0;
+    width: 98vw;
+    height: 100vh;
+}
+
+#cuerpo {
+    background-color: #d8d8d8;
+    color: #264351;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    align-content: center;
+    padding-top: 1rem;
+    z-index: 1;
+    display: inline-block;
+    width: 100%;
+    /*position: relative;*/
+}
+
+h1 {
+    color: #73ca9c !important;
+    border: 1px solid #264351;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+#creadorTabla {
+    overflow: hidden;
+    float: left;
+    padding-left: 3%;
+}
+
+.botonesDeSpinner {
+    width: 100%;
+    border: none;
+    background-color: inherit;
+    color: #d8d8d8;
+    font-size: x-large; 
+    font-weight: bold;
+    padding: 0 0 0 0;
+}
+
+#spinner > tbody > tr > td {
+    background-color: #264351;
+    border-color: #264351;
+}
+
+#numeroDeClases {
+    float: left;
+    color: #d8d8d8;
+    background-color: #264351;
+    /*max-width: 100%;*/
+    /*width: 4.3rem;*/
+    height: auto;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    /*border-radius: 6px;
+    border-color: #264351;*/
+}
+
+.form-control::-webkit-inner-spin-button, 
+.form-control::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.form-control {
+    -moz-appearance:textfield; /* Firefox */
+    text-align: center;
+    float: left;
+}
+
+#tabla {
+    border: 1px solid #264351 !important;
+}
+
+#tabla > thead > tr > th{
+    border: 1px solid #264351 !important;
+    background-color: #264351;
+    color: #d8d8d8;
+    text-align: center;
+}
+
+#tabla > tbody > tr > td {
+    border: 1px solid #264351 !important;
+    padding: 0 0 0 0;
+}
+
+#tabla > tbody > tr > td > input{
+    background-color: #d8d8d8 !important;
+}
+
+#tabla > tbody > tr{
+    -webkit-animation: scale-up-ver-top 0.6s cubic-bezier(0.860, 0.000, 0.070, 1.000) both;
+	animation: scale-up-ver-top 0.6s cubic-bezier(0.860, 0.000, 0.070, 1.000) both;
+}
+
+#resultados {
+    animation: slide-up 1.0s ease;
+    display: none;
+}
+
+#resultados > table {
+    float: right;
+}
+
+#resultados > table > tbody > tr > td {
+    border: none;
+}
+
+#resultados > table > tbody > tr > td > p {
+    font-size: 1.6rem;
+    font-style: italic;
+    font-family: 'Bitter', serif;
+    text-align: left;
+}
+
+#botonCalcular {
+    background-color: #264351;
+    color: #d8d8d8;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: #264351;
+    font-size: 1.2rem;
+}
+
+#botonCalcular:hover {
+    background-color: cadetblue;
+    color: #264351;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: cadetblue;
+    font-size: 1.2rem;
+    -webkit-animation: slide-fwd-center 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: slide-fwd-center 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+#indice {
+    background-color: #d8d8d8;
+    border-color: #264351;
+    color: #264351;
+    border-width: 2px;
+    font-weight: bold;
+}
+
+#indiceRedondeado {
+    background-color: #d8d8d8;
+    border-color: coral;
+    border-width: 2px;
+    font-weight: bold;
+    -webkit-animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+	animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+#titulo {
+    border: 1px solid #264351;
+    border-radius: 6px;
+    -webkit-animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+	animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type="number"] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+#miscelaneos > table {
+    float: right;
+}
+
+#miscelaneos > table > tbody > tr > td {
+    border: none;
+}
+
+#miscelaneos > table > tbody > tr > td > p {
+    font-size: 1.2rem;
+    font-style: italic;
+    font-family: 'Bitter', serif;
+    text-align: left;
+}
+
+#guardar {
+    background-color: #264351;
+    color: #d8d8d8;
+    border-radius: 6px;
+    border-width: 2px;
+    border-color: #264351;
+    font-size: 1.2rem;
+}
+
+.botones, label {
+    cursor: pointer; /* "hand" cursor */
+    font-size: 1.25em;
+    font-weight: 700;
+    font-style: italic;
+    color: #264351;
+    background-color: cadetblue;
+    border-radius: 6px;
+}
+
+.botones:hover, label:hover {
+    cursor: pointer; /* "hand" cursor */
+    font-size: 1.25em;
+    font-weight: 700;
+    font-style: italic;
+    border-radius: 6px;
+    -webkit-animation: shadow-pop-br 0.4s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+	animation: shadow-pop-br 0.4s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ----------------------------------------------
+ * Generated by Animista on 2020-1-15 19:17:42
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation scale-up-ver-top
+ * ----------------------------------------
+ */
+ @-webkit-keyframes scale-up-ver-top {
+    0% {
+      -webkit-transform: scaleY(0.4);
+              transform: scaleY(0.4);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+    100% {
+      -webkit-transform: scaleY(1);
+              transform: scaleY(1);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+  }
+  @keyframes scale-up-ver-top {
+    0% {
+      -webkit-transform: scaleY(0.4);
+              transform: scaleY(0.4);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+    100% {
+      -webkit-transform: scaleY(1);
+              transform: scaleY(1);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+  }
+
+  /**
+ * ----------------------------------------
+ * animation shadow-pop-br
+ * ----------------------------------------
+ */
+@-webkit-keyframes shadow-pop-br {
+    0% {
+      -webkit-box-shadow: 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351;
+              box-shadow: 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351;
+      -webkit-transform: translateX(0) translateY(0);
+              transform: translateX(0) translateY(0);
+    }
+    100% {
+      -webkit-box-shadow: 1px 1px #264351, 2px 2px #264351, 3px 3px #264351, 4px 4px #264351, 5px 5px #264351, 6px 6px #264351, 7px 7px #264351, 8px 8px #264351;
+              box-shadow: 1px 1px #264351, 2px 2px #264351, 3px 3px #264351, 4px 4px #264351, 5px 5px #264351, 6px 6px #264351, 7px 7px #264351, 8px 8px #264351;
+      -webkit-transform: translateX(-8px) translateY(-8px);
+              transform: translateX(-8px) translateY(-8px);
+    }
+  }
+  @keyframes shadow-pop-br {
+    0% {
+      -webkit-box-shadow: 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351;
+              box-shadow: 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351;
+      -webkit-transform: translateX(0) translateY(0);
+              transform: translateX(0) translateY(0);
+    }
+    100% {
+      -webkit-box-shadow: 1px 1px #264351, 2px 2px #264351, 3px 3px #264351, 4px 4px #264351, 5px 5px #264351, 6px 6px #264351, 7px 7px #264351, 8px 8px #264351;
+              box-shadow: 1px 1px #264351, 2px 2px #264351, 3px 3px #264351, 4px 4px #264351, 5px 5px #264351, 6px 6px #264351, 7px 7px #264351, 8px 8px #264351;
+      -webkit-transform: translateX(-8px) translateY(-8px);
+              transform: translateX(-8px) translateY(-8px);
+    }
+  }
+
+  /**
+ * ----------------------------------------
+ * animation slide-fwd-center
+ * ----------------------------------------
+ */
+@-webkit-keyframes slide-fwd-center {
+    0% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+    }
+    100% {
+      -webkit-transform: translateZ(160px);
+              transform: translateZ(160px);
+    }
+  }
+  @keyframes slide-fwd-center {
+    0% {
+      -webkit-transform: translateZ(0);
+              transform: translateZ(0);
+    }
+    100% {
+      -webkit-transform: translateZ(160px);
+              transform: translateZ(160px);
+    }
+  }
