@@ -44,12 +44,14 @@ function EditorDeTablaAgregarFilas(n){
         notaInput.className = "form-control";
         notaInput.min = "0";
         notaInput.max = "100";
+        notaInput.onclick = "limitarDatos(this)";
 
         uvInput = document.createElement("input");
         uvInput.type = "number";
         uvInput.className = "form-control";
         uvInput.min = "1";
         uvInput.max = "8";
+        uvInput.onclick = "limitarDatos(this)";
         
         celdaClase = filaNueva.insertCell(0);
         celdaNota = filaNueva.insertCell(1);

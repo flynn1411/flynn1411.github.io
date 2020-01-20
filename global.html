@@ -139,8 +139,7 @@
                 }
             }
 
-            function limitarDatos(){
-                elemento = document.getElementById("numeroDeClases");
+            function limitarDatos(elemento){
                 valorActual = parseInt(elemento.value);
 
                 if( valorActual > parseInt(elemento.max) ){
@@ -172,7 +171,7 @@
                                             <button id="menos" class="botonesDeSpinner" onclick="quitar()">-</button>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" id="numeroDeClases" min="1" max="70" value="20" oninput="limitarDatos()">
+                                            <input class="form-control" type="number" id="numeroDeClases" min="1" max="80" value="20" oninput="limitarDatos(this)">
                                         </td>
                                         <td>
                                             <button id="mas" class="botonesDeSpinner" onclick="agregar()">+</button>
@@ -203,10 +202,10 @@
                                             <input class="form-control" type="text" placeholder="Clase1" style="font-style: italic;"/>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" min="0" max ="100"/>
+                                            <input class="form-control" type="number" min="0" max ="100" oninput="limitarDatos(this)"/>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" min="1" max="7"/>
+                                            <input class="form-control" type="number" min="1" max="7" oninput="limitarDatos(this)"/>
                                         </td>
                                     </tr>
                                 </tbody>
