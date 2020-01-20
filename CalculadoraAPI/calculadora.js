@@ -5,9 +5,11 @@ function CalculadoraIndice(){
     this.calcularIndicePeriodo = CalculadoraIndiceCalcularIndicePeriodo;
     this.calcularIndiceGlobal = CalculadoraIndiceCalcularIndiceGlobal;
     this.obtenerTotalUV = calcularIndicePeriodoObtenerTotalUV;
+    this.revisarNSP = calcularIndiceRevisarNSP;
 }
 
 function CalculadoraIndiceCalcularIndiceGlobal(datos = []){
+    datos = this.revisarNSP(datos);
     sumaIndice = 0;
     totalUV = parseFloat(this.obtenerTotalUV(datos));
 
@@ -33,4 +35,14 @@ function calcularIndicePeriodoObtenerTotalUV(datos = []){
     }
 
     return UV;
+}
+
+function calcularIndiceRevisarNSP(datos = []){
+    for(i = 0; i < datos.length; i++){
+        if( parseInt(datos[i][0]) == 0){
+            datos.pop(i);
+        }
+    }
+    console.log(datos);
+    return datos;
 }

@@ -4,7 +4,7 @@ function EditorDeTabla(numeroDeFilasActual = 1){
     this.editarTabla = EditorDeTablaEditarTabla;
     this.agregarFilas = EditorDeTablaAgregarFilas;
     this.quitarFilas = EditorDeTablaQuitarFilas;
-    this.llenarDatos = ExtractorDeDatosLlenarDatos;
+    this.llenarDatos = EditorDeTablaLlenarDatos;
 }
 
 function EditorDeTablaEditarTabla(n = (document.getElementById("numeroDeClases").value)){
@@ -44,14 +44,12 @@ function EditorDeTablaAgregarFilas(n){
         notaInput.className = "form-control";
         notaInput.min = "0";
         notaInput.max = "100";
-        notaInput.onclick = "limitarDatos(this)";
 
         uvInput = document.createElement("input");
         uvInput.type = "number";
         uvInput.className = "form-control";
         uvInput.min = "1";
         uvInput.max = "8";
-        uvInput.onclick = "limitarDatos(this)";
         
         celdaClase = filaNueva.insertCell(0);
         celdaNota = filaNueva.insertCell(1);
@@ -91,7 +89,7 @@ function TraductorDeCSVcsv2arreglo(csv = ""){
     
 }
 
-function ExtractorDeDatosLlenarDatos(arreglo){
+function EditorDeTablaLlenarDatos(arreglo){
     this.editarTabla(arreglo.length);
     document.getElementById("numeroDeClases").value = this.numeroDeFilasActual;
     tabla = document.getElementById("datos");

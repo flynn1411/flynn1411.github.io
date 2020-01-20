@@ -4,6 +4,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="manifest" href="/manifest.json">
         <link rel="stylesheet" href="recursos/barraNavegacion.css">
         <link rel="stylesheet" href="recursos/estilo.css">
         <link rel="shortcut icon" href="recursos/favicon.ico" type="image/x-icon">
@@ -59,7 +60,7 @@
                 if(arreglo){
                     document.getElementById("indice").value = calculadora.calcularIndicePeriodo(arreglo);
                     
-                    redondeado = (parseFloat(calculadora.calcularIndicePeriodo(arreglo))).toFixed(0);
+                    redondeado = (parseFloat(document.getElementById("indice").value)).toFixed(0);
                     elemento = document.getElementById("indiceRedondeado");
                     elemento.value = redondeado;
 

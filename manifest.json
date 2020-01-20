@@ -1,0 +1,16 @@
+{
+    "name":"Calculadora de Índice Académico",
+    "shortname":"Índice Académico",
+    "start-url":"/index.html",
+    "display":"standalone",
+    "background_color": "#d8d8d8",
+    "description": "A demo app for a fictional conference",
+    "theme_color": "#264351",
+    "icons": [
+        {
+        "src": "./recursos/favicon.ico",
+        "sizes": "128x128",
+        "type": "icon/ico"
+        }
+    ]
+}
