@@ -26,11 +26,15 @@ function ExtractorDeDatosExtraerDatos(razon = "calcular"){
 
     if(this.verificarDatos(numeroDeFilas) && (razon == "calcular")){
         for(i = 0; i < numeroDeFilas; i++){
-            columnas = [];
-            columnas.push(parseInt(tabla.rows[i].cells[1].children[0].value));
-            columnas.push(parseInt(tabla.rows[i].cells[2].children[0].value));
 
-            datos.push(columnas);
+            if( (parseInt(tabla.rows[i].cells[1].children[0].value)) != 0 ){
+                columnas = [];
+                columnas.push(parseInt(tabla.rows[i].cells[1].children[0].value));
+                columnas.push(parseInt(tabla.rows[i].cells[2].children[0].value));
+
+                datos.push(columnas);
+            }
+            
         }
 
         return datos;

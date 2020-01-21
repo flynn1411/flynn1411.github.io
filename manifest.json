@@ -1,16 +1,17 @@
 {
     "name":"Calculadora de Índice Académico",
-    "shortname":"Índice Académico",
-    "start-url":"/index.html",
+    "short_name":"Índice Académico",
+    "start_url":".",
     "display":"standalone",
     "background_color": "#d8d8d8",
-    "description": "A demo app for a fictional conference",
+    "orientation":"portrait",
+    "description": "Aplicación para calcular el índice de periodo o global.",
     "theme_color": "#264351",
     "icons": [
         {
-        "src": "./recursos/favicon.ico",
-        "sizes": "128x128",
-        "type": "icon/ico"
+        "src": "./recursos/icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
         }
     ]
 }

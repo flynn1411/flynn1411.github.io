@@ -2,7 +2,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="manifest" href="/manifest.json">
+        <link rel="manifest" href="./manifest.json">
         <link rel="stylesheet" href="recursos/barraNavegacion.css">
         <link rel="stylesheet" href="recursos/informacion.css">
         <link rel="shortcut icon" href="recursos/favicon.ico" type="image/x-icon">
@@ -28,6 +28,16 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
         <title>Información - Calculadora de Indice Academico</title>
+
+        <!--PWA-->
+        <script src="sw.js"></script>
+        <script>
+            function cargarPWA(){
+                if('serviceWorker' in navigator){
+                    navigator.serviceWorker.register('/sw.js');
+                }
+            }
+        </script>
     </head>
 
     <body height="100vh">

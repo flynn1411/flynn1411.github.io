@@ -4,7 +4,7 @@
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="manifest" href="/manifest.json">
+        <link rel="manifest" href="manifest.json">
         <link rel="stylesheet" href="recursos/barraNavegacion.css">
         <link rel="stylesheet" href="recursos/estilo.css">
         <link rel="shortcut icon" href="recursos/favicon.ico" type="image/x-icon">
@@ -31,9 +31,24 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
         <!--Importación de librerías-->
+        <script src="sw.js"></script>
         <script src="CalculadoraAPI/calculadora.js"></script>
         <script src="CalculadoraAPI/editorDeTabla.js"></script>
         <script src="CalculadoraAPI/extractorDeDatos.js"></script>
+
+        <!--PWA-->
+        <script>
+            function cargarPWA(){
+                if('serviceWorker' in navigator){
+                    navigator.serviceWorker.register('/sw.js').then(function(){
+                        console.log("SW Registered");
+                    }
+                    );
+                }
+            }
+            
+
+        </script>
 
         <!--scripts-->
         <script>
@@ -42,6 +57,7 @@
             extractorDeDatos = new ExtractorDeDatos();
 
             function iniciarPagina(){
+                cargarPWA();
                 boton = document.getElementById("botonDeSeleccion");
                 boton.value = "Periodo";
                 boton.innerHTML = "Periodo";
