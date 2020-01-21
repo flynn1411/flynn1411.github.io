@@ -30,7 +30,6 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
         <!--Importación de librerías-->
-        <script src="sw.js"></script>
         <script src="CalculadoraAPI/calculadora.js"></script>
         <script src="CalculadoraAPI/editorDeTabla.js"></script>
         <script src="CalculadoraAPI/extractorDeDatos.js"></script>
@@ -44,12 +43,12 @@
             extractorDeDatos = new ExtractorDeDatos();
 
             function iniciarPagina(){
-                cargarPWA();
                 boton = document.getElementById("botonDeSeleccion");
                 boton.value = "Global";
                 boton.innerHTML = "Global";
 
                 cambiarTabla();
+                cargarPWA();
             }
 
             function extraerDeCSV(){
@@ -280,7 +279,7 @@
 
         <!--Barra de Navegación Escritorio-->
         <div class="row fixed-bottom bg-dark" id="navbar-desktop">
-            <div class="col-sm-1"><a href="información.html">
+            <div class="col-sm-1"><a href="informacion.html">
                 <img src="recursos/info.png">
             </a></div>
             <div class="col-sm-3" id="textoNormal"><a>Indice:</a></div>
@@ -290,7 +289,7 @@
 
         <!--Barra de Navegación Móvil-->
         <div class="row fixed-bottom bg-dark" id="navbar-mobile">
-            <div class="col-2" style="padding-left: 12px; width: 25%;"><a href="información.html">
+            <div class="col-2" style="padding-left: 12px; width: 25%;"><a href="informacion.html">
                 <img src="recursos/info.png">
             </a></div>
             <div class="col-4" id="textoNormal"><a>Indice:</a></div>
