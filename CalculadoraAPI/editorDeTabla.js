@@ -5,6 +5,7 @@ function EditorDeTabla(numeroDeFilasActual = 1){
     this.agregarFilas = EditorDeTablaAgregarFilas;
     this.quitarFilas = EditorDeTablaQuitarFilas;
     this.llenarDatos = EditorDeTablaLlenarDatos;
+    this.borrarDatos = EditorDeTablaBorrarDatos;
 }
 
 function EditorDeTablaEditarTabla(n = (document.getElementById("numeroDeClases").value)){
@@ -106,4 +107,20 @@ function EditorDeTablaLlenarDatos(arreglo){
         }
     }
         
+}
+
+function EditorDeTablaBorrarDatos(){
+    this.editarTabla(20);
+    document.getElementById("numeroDeClases").value = this.numeroDeFilasActual;
+    tabla = document.getElementById("datos");
+    numeroDeFilas = tabla.rows.length;
+
+    for(i = 0; i < numeroDeFilas; i++){
+        for(j = 0; j < 3; j++){
+            if( j == 0 ){
+                tabla.rows[i].cells[j].children[0].value = `Clase${i+1}`;
+            }
+            tabla.rows[i].cells[j].children[0].value = ``;
+        }
+    }
 }

@@ -1,8 +1,11 @@
+const staticCacheName = 'site-static-v1';
+
 cacheFiles = [
     './',
     './index.html',
-    './global.html',
+    './periodo.html',
     './informacion.html',
+    './index.js',
     './CalculadoraAPI/calculadora.js',
     './CalculadoraAPI/editorDeTabla.js',
     './CalculadoraAPI/extractorDeDatos.js',
@@ -20,13 +23,17 @@ cacheFiles = [
     'https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css',
     'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js',
-    'https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'
+    'https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js',
+    'https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js',
+    'https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js',
+    'https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js',
+    'https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js'
 ];
 
 self.addEventListener('install', function (event) {
     console.log('SW Installed');
     event.waitUntil(
-      caches.open('static')
+      caches.open('site-static-v1')
         .then(function (cache) {
           for(i=0; i < cacheFiles.length; i++){
               cache.add(cacheFiles[i]);

@@ -197,6 +197,12 @@ input[type="number"] {
     font-size: 1.2rem;
 }
 
+#fileNameInput {
+    background-color: #d8d8d8;
+    color: #264351;
+    border: 1px solid #5f9ea0 !important;
+}
+
 .botones, label {
     cursor: pointer; /* "hand" cursor */
     font-size: 1.25em;

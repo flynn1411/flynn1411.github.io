@@ -41,6 +41,7 @@ function ExtractorDeDatosExtraerDatos(razon = "calcular"){
     }
 
     else if(this.verificarDatos(numeroDeFilas) && (razon == "guardar")){
+        datos.push(["Clase","Nota","UV"]);
         for(i = 0; i < numeroDeFilas; i++){
             columnas = [];
             columnas.push(tabla.rows[i].cells[0].children[0].value);

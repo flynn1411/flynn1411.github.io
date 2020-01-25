@@ -3,6 +3,8 @@ function TraductorDeCSV(){
     
     this.csv2arreglo = TraductorDeCSVcsv2arreglo;
     this.arreglo2csv = TraductorDeCSVarreglo2csv;
+    this.csv2json = TraductorDeCSVcsv2json;
+    this.json2arreglo = TraductorDeCSVjson2arreglo
 }
 
 function TraductorDeCSVcsv2arreglo(csv = ""){
@@ -15,7 +17,7 @@ function TraductorDeCSVcsv2arreglo(csv = ""){
         filas = csv.split("\n");
     }
 
-    for(i = 0; i < filas.length; i++){
+    for(i = 1; i < filas.length; i++){
         columnas = filas[i].split(",");
 
         for(j = 1; j < columnas.length; j++){
@@ -42,4 +44,40 @@ function TraductorDeCSVarreglo2csv(arreglo){
 
     console.log(csv);
     return csv;
+}
+
+function TraductorDeCSVcsv2json(arreglo = []){
+    json = [];
+
+    primeraFila = arreglo[0];
+
+    for(i = 1; i < arreglo.length; i++){
+        var obj = {};
+
+        for( j = 0; j < arreglo[i].length; j++){
+            obj[primeraFila[j]] = arreglo[i][j];
+        }
+
+        json.push(obj);
+    }
+
+    return json;
+}
+
+function TraductorDeCSVjson2arreglo(json){
+    arregloFinal = [];
+    ordenDeDatos = ["Clase","Nota","UV"];
+    //arregloFinal.push(ordenDeDatos);
+
+    for( i = 0; i < json.length; i++){
+        columnas = [];
+
+        for(j = 0; j < ordenDeDatos.length; j++){
+            columnas.push(json[i][ordenDeDatos[j]]);
+        }
+        
+        arregloFinal.push(columnas);
+    }
+
+    return arregloFinal;
 }
