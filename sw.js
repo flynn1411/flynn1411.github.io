@@ -1,4 +1,4 @@
-const staticCacheName = 'site-static-v2';
+const staticCacheName = 'site-static-v3';
 
 cacheFiles = [
     './',
@@ -33,7 +33,7 @@ cacheFiles = [
 self.addEventListener('install', function (event) {
     console.log('SW Installed');
     event.waitUntil(
-      caches.open('site-static-v1')
+      caches.open(staticCacheName)
         .then(function (cache) {
           for(i=0; i < cacheFiles.length; i++){
               cache.add(cacheFiles[i]);
