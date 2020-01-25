@@ -114,20 +114,27 @@ function ServidorDeFirebaseLogout(){
     });
 }
 
-function ServidorDeFirebaseEnviarDatos(datos){
+function ServidorDeFirebaseEnviarDatos(datos, rama = "global"){
     var database = firebase.database();
 
     usuarioActual = firebase.auth().currentUser;
 
-    database.ref('notas/' + usuarioActual.uid).set({
-        json : datos
-    });
+    if(rama == "periodo"){
+        database.ref('notas/' + usuarioActual.uid).set({
+            periodo : datos
+        });
+    }
+    else{
+        database.ref('notas/' + usuarioActual.uid).set({
+            global : datos
+        });
+    }
 
     console.log("completado");
 
 }
 
-function ServidorDeFirebaseTraerDatos(param = "observar"){
+function ServidorDeFirebaseTraerDatos(param = "observar", rama = "global"){
     var database = firebase.database();
 
     usuarioActual = firebase.auth().currentUser;
@@ -135,7 +142,7 @@ function ServidorDeFirebaseTraerDatos(param = "observar"){
     referencia = database.ref('notas/' + usuarioActual.uid);
 
     referencia.on('value', (data) => {
-        this.datos = data.val()["json"];
+        this.datos = data.val()[rama];
         document.getElementById("recargar").click();
     });
 

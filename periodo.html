@@ -30,19 +30,34 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
+
         <!--Importación de librerías-->
         <script src="CalculadoraAPI/calculadora.js"></script>
         <script src="CalculadoraAPI/editorDeTabla.js"></script>
         <script src="CalculadoraAPI/extractorDeDatos.js"></script>
+        <script src="index.js"></script>
 
         <!--scripts-->
         <script>
             calculadora = new CalculadoraIndice();
             editorDeTabla = new EditorDeTabla();
             extractorDeDatos = new ExtractorDeDatos();
+            var servidor = new ServidorDeFirebase();
 
             function iniciarPagina(){
                 //cargarPWA();
+
+                editorDeTabla.borrarDatos();
+                servidor.inicializar();
+
                 boton = document.getElementById("botonDeSeleccion");
                 boton.value = "Periodo";
                 boton.innerHTML = "Periodo";
@@ -57,6 +72,10 @@
 
             function calcularIndice(){
                 arreglo = extractorDeDatos.extraerDatos();
+
+                if(servidor.usuarioActivo()){
+                    crearJSON();
+                }
 
                 if(arreglo){
                     document.getElementById("indice").value = calculadora.calcularIndicePeriodo(arreglo);
@@ -106,6 +125,27 @@
                 }
 
                 cambiarTabla();
+            }
+
+            function crearJSON(){
+                csv = extractorDeDatos.extraerDatos("guardar");
+                json = traductorCSV.csv2json(csv);
+
+                servidor.enviarDatos(json);
+            }
+
+            function registrarUsuario(){
+                servidor.ingresar();
+            }
+
+            function quitarUsuarioActual(){
+                servidor.logout();
+                editorDeTabla.borrarDatos();
+            }
+
+            function recargarDatos(){
+                console.log(servidor.datos);
+                editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.datos) );
             }
 
         </script>
@@ -195,6 +235,14 @@
                         </div>
                         <br><br>
                         <button type="button" onclick="calcularIndice()" id="botonCalcular">Calcular Indice de Periodo</button>
+                        <br>
+                        <br>
+                        <br>
+                        <label for="google" id="sign-in" style="display: none;">Utilizar cuenta de Google para guardar datos</label>
+                        <button class="botones" id="google" onclick="registrarUsuario()" style="display: none;"></button>
+                        <div id="logged-in" style="display: none;"></div>
+                        <button type="button" onclick="quitarUsuarioActual()" id="logout">Salirse</button>
+                        <button type="button" id="recargar" onclick="recargarDatos()" style="display: none;">Cargar datos otra vez</button>
                         <br>
                         <br>
                         <br>

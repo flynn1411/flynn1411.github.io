@@ -42,8 +42,15 @@ self.addEventListener('install', function (event) {
     );
   });
   
-  self.addEventListener('activate', function () {
-    console.log('SW Activated');
+  self.addEventListener('activate', (event) => {
+    event.waitUntil(
+      caches.keys().then(keys => {
+        return Promise.all(keys 
+          .filter( key => key !== staticCacheName )
+          .map( caches.delete(key) )
+          )
+      })
+    )
   });
   
   self.addEventListener('fetch', function(event) {
