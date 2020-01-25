@@ -43,6 +43,7 @@
         <script src="CalculadoraAPI/calculadora.js"></script>
         <script src="CalculadoraAPI/editorDeTabla.js"></script>
         <script src="CalculadoraAPI/extractorDeDatos.js"></script>
+        <script src="CalculadoraAPI/traductorCSV.js"></script>
         <script src="index.js"></script>
 
         <!--scripts-->
@@ -50,13 +51,14 @@
             calculadora = new CalculadoraIndice();
             editorDeTabla = new EditorDeTabla();
             extractorDeDatos = new ExtractorDeDatos();
+            traductorCSV = new TraductorDeCSV();
             var servidor = new ServidorDeFirebase();
 
             function iniciarPagina(){
                 //cargarPWA();
 
                 editorDeTabla.borrarDatos();
-                servidor.inicializar();
+                servidor.inicializar("periodo");
 
                 boton = document.getElementById("botonDeSeleccion");
                 boton.value = "Periodo";
@@ -144,8 +146,8 @@
             }
 
             function recargarDatos(){
-                console.log(servidor.datos);
-                editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.datos) );
+                console.log(servidor.periodo);
+                editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.periodo) );
             }
 
         </script>

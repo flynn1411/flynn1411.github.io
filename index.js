@@ -11,6 +11,7 @@ function ServidorDeFirebase(){
     };
     this.usuarioActual = null;
     this.datos = null;
+    this.periodo = null;
     
     this.inicializar = ServidorDeFirebaseInicializar;
     this.ingresar = ServidorDeFirebaseIngresar;
@@ -138,13 +139,16 @@ function ServidorDeFirebaseTraerDatos(rama = "global"){
     var database = firebase.database();
 
     usuarioActual = firebase.auth().currentUser;
+    var referencia = database.ref('notas/' + usuarioActual.uid);
 
-    referencia = database.ref('notas/' + usuarioActual.uid);
+    if(rama == "periodo"){
+        referencia = database.ref('notas/' + usuarioActual.uid + '/periodo');
+    }
 
     referencia.on('value', (data) => {
     
         if(rama == "periodo"){
-            this.datos = data.val()['json'];
+            this.periodo = data.val()['json'];
         }
         else{
             this.datos = data.val()['global'];
