@@ -64,7 +64,7 @@ function TraductorDeCSVcsv2json(arreglo = []){
     return json;
 }
 
-function TraductorDeCSVjson2arreglo(json){
+function TraductorDeCSVjson2arreglo(json = []){
     arregloFinal = [];
     ordenDeDatos = ["Clase","Nota","UV"];
     //arregloFinal.push(ordenDeDatos);

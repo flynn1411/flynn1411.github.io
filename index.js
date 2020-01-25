@@ -22,7 +22,7 @@ function ServidorDeFirebase(){
     this.mostrarDatos = ServidorDeFirebaseMostrarDatos;
 }
 
-function ServidorDeFirebaseInicializar(){
+function ServidorDeFirebaseInicializar(modo = "global"){
     // Initialize Firebase
     firebase.initializeApp(this.firebaseConfig);
     firebase.analytics();
@@ -31,7 +31,7 @@ function ServidorDeFirebaseInicializar(){
         
         if(user){
             this.mostrarDatos();
-            this.traerDatos();
+            this.traerDatos(modo);
         }
         else{
             document.getElementById("sign-in").style.display = "block";
@@ -120,8 +120,8 @@ function ServidorDeFirebaseEnviarDatos(datos, rama = "global"){
     usuarioActual = firebase.auth().currentUser;
 
     if(rama == "periodo"){
-        database.ref('notas/' + usuarioActual.uid).set({
-            periodo : datos
+        database.ref('notas/' + usuarioActual.uid + '/periodo').set({
+            json : datos
         });
     }
     else{
@@ -134,7 +134,7 @@ function ServidorDeFirebaseEnviarDatos(datos, rama = "global"){
 
 }
 
-function ServidorDeFirebaseTraerDatos(param = "observar", rama = "global"){
+function ServidorDeFirebaseTraerDatos(rama = "global"){
     var database = firebase.database();
 
     usuarioActual = firebase.auth().currentUser;
@@ -142,7 +142,14 @@ function ServidorDeFirebaseTraerDatos(param = "observar", rama = "global"){
     referencia = database.ref('notas/' + usuarioActual.uid);
 
     referencia.on('value', (data) => {
-        this.datos = data.val()[rama];
+    
+        if(rama == "periodo"){
+            this.datos = data.val()['json'];
+        }
+        else{
+            this.datos = data.val()['global'];
+        }
+
         document.getElementById("recargar").click();
     });
 

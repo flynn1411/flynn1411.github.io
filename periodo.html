@@ -131,7 +131,7 @@
                 csv = extractorDeDatos.extraerDatos("guardar");
                 json = traductorCSV.csv2json(csv);
 
-                servidor.enviarDatos(json);
+                servidor.enviarDatos(json, "periodo");
             }
 
             function registrarUsuario(){
