@@ -35,6 +35,7 @@ function ServidorDeFirebaseInicializar(modo = "global"){
             this.traerDatos(modo);
         }
         else{
+            //document.getElementById("numeroDeClases").value = 4;
             document.getElementById("sign-in").style.display = "block";
             document.getElementById("logout").style.display = "none";
         }

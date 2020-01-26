@@ -71,6 +71,7 @@
 
             function iniciarPagina(){
                 cargarPWA();
+                cambiarTabla();
                 editorDeTabla.borrarDatos();
                 servidor.inicializar();
 
@@ -82,7 +83,6 @@
                 boton.value = "Global";
                 boton.innerHTML = "Global";
 
-                cambiarTabla();
             }
 
             function extraerDeCSV(){

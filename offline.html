@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="manifest" href="./manifest.json">
+        <link rel="stylesheet" href="recursos/barraNavegacion.css">
+        <link rel="stylesheet" href="recursos/informacion.css">
+        <link rel="shortcut icon" href="recursos/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="recursos/favicon.ico" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Bitter:400i|Fira+Code|Roboto|Ubuntu|Ubuntu+Mono&display=swap" rel="stylesheet">  
+
+        <!-- Chrome, Firefox OS and Opera -->
+        <meta name="theme-color" content="#d8d8d8">
+        <!-- Windows Phone -->
+        <meta name="msapplication-navbutton-color" content="#d8d8d8">
+        <!-- iOS Safari -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="#d8d8d8">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+        <title>Sin Conexión - Calculadora de Indice Academico</title>
+    </head>
+    <body height="100vh">
+
+        <div class="container-fluid content-center">
+            <div class="row">
+                <h2>Habia ponido la pagina aquí</h2>
+            </div>
+            <div class="row">
+                <img src="recursos/fallback.png" style="max-width: 300px;">
+            </div>
+            <div class="row">
+                <h4>No se detecta conexión a internet, por lo que la página no puede ser mostrada.</h4>
+            </div>
+            
+        </div>
+
+        <!--Barra de Navegación Escritorio-->
+        <div class="row fixed-bottom bg-dark" id="navbar-desktop">
+            <div class="col-sm-1" id="seleccionado"><a href="informacion.html">
+                <img src="recursos/info.png">
+            </a></div>
+            <div class="col-sm-3" id="textoNormal"><a>Indice:</a></div>
+            <div class="col-sm-4"><a href="index.html">Global</a></div>
+            <div class="col-sm-4"><a href="periodo.html">Periodo</a></div>
+        </div>
+
+        <!--Barra de Navegación Móvil-->
+        <div class="row fixed-bottom bg-dark" id="navbar-mobile">
+            <div class="col-2" id="seleccionado" style="padding-left: 12px; width: 25%;"><a href="informacion.html">
+                <img src="recursos/info.png">
+            </a></div>
+            <div class="col-4" id="textoNormal" max-width="100% !important"><a>Indice:</a></div>
+            <div class="col" max-width="100% !important">
+                <div class="dropup">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="botonDeSeleccion">
+                    Info
+                    </button>
+                    <div class="dropdown-menu" id="opciones">
+                        <a class="dropdown-item" href="index.html">Global</a>
+                        <a class="dropdown-item" href="periodo.html">Periodo</a>
+                    </div>
+                </div>
+            </div>
+             
+        </div>
+    </body>
+</html>

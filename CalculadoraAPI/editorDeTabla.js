@@ -8,8 +8,8 @@ function EditorDeTabla(numeroDeFilasActual = 1){
     this.borrarDatos = EditorDeTablaBorrarDatos;
 }
 
-function EditorDeTablaEditarTabla(n = (document.getElementById("numeroDeClases").value)){
-    n = parseInt(n);
+function EditorDeTablaEditarTabla(n = parseInt(document.getElementById("numeroDeClases").value)){
+    //n = parseInt(n);
 
     if( (n > 0 ) && (n <= (parseInt(document.getElementById("numeroDeClases").max) + 1) ) ){
          if(this.numeroDeFilasActual < n){
