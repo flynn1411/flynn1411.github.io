@@ -185,7 +185,7 @@ input[type="number"] {
     font-size: 1.2rem;
     font-style: italic;
     font-family: 'Bitter', serif;
-    text-align: left;
+    /*text-align: left;*/
 }
 
 #guardar {
@@ -221,6 +221,22 @@ input[type="number"] {
     border-radius: 6px;
     -webkit-animation: shadow-pop-br 0.4s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 	animation: shadow-pop-br 0.4s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+#logged-in {
+    border: 3px solid #264351;
+    border-radius: 6%;
+    
+    -webkit-animation: slide-fwd-center 0.6s cubic-bezier(0.895, 0.030, 0.685, 0.220) both;
+	animation: slide-fwd-center 0.6s cubic-bezier(0.895, 0.030, 0.685, 0.220) both;
+}
+
+#fotoDePerfil {
+    border-radius: 50%;
+    border: 5px solid #264351;
+
+    -webkit-animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 @keyframes slide-up {
@@ -309,7 +325,7 @@ input[type="number"] {
     }
   }
 
-  /**
+ /**
  * ----------------------------------------
  * animation slide-fwd-center
  * ----------------------------------------
@@ -332,5 +348,31 @@ input[type="number"] {
     100% {
       -webkit-transform: translateZ(160px);
               transform: translateZ(160px);
+    }
+  }
+
+  /**
+ * ----------------------------------------
+ * animation shadow-drop-center
+ * ----------------------------------------
+ */
+@-webkit-keyframes shadow-drop-center {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+              box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+      -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+              box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    }
+  }
+  @keyframes shadow-drop-center {
+    0% {
+      -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+              box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+    100% {
+      -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+              box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
     }
   }

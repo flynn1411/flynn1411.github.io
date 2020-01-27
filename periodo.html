@@ -146,13 +146,13 @@
             }
 
             function recargarDatos(){
-                console.log(servidor.periodo);
+                //console.log(servidor.periodo);
                 editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.periodo) );
             }
 
         </script>
 
-        <title>Indice de Periodo - Calculadora de Indice Academico</title>
+        <title>Índice de Periodo - Calculadora de Índice Académico</title>
 
     </head>
 
@@ -160,7 +160,7 @@
 
         <!--Cuerpo de la clase-->
         <div class="jumbotron" id="cuerpo">
-            <div class="container col-sm-4"><h1><strong>Indice de Periodo:</strong></h1></div>
+            <div class="container col-sm-4"><h1><strong>Índice de Periodo:</strong></h1></div>
             <div class="container text-center" id="creadorTabla">
                 <div class="row col-sm-6">
                     <div class="col"><h4>Clases cursadas durante el periodo:</h4></div>
@@ -221,7 +221,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <p>Indice de Periodo:</p>
+                                            <p>Índice de Periodo:</p>
                                             <input class="form-control" type="text" readonly ="true" id="indice" class="redondeado"/>
                                               
                                         </td>
@@ -235,16 +235,46 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <div class="table responsive" id="miscelaneos">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <button type="button" onclick="calcularIndice()" id="botonCalcular">Calcular Índice de Periodo</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="google" id="sign-in" style="display: none;">Ingresar con una cuenta de Google</label>
+                                            <button class="botones" id="google" onclick="registrarUsuario()" style="display: none;"></button>
+                                        </td>
+                                        <tr>
+                                            <td>
+                                                <div id="logged-in" style="display: none;"></div>
+                                            </td>
+                                            <tr>
+                                                <td>
+                                                    <label for="logout" id="salir" style="display: none;">Cerrar Sesión</label>
+                                                    <button type="button" onclick="quitarUsuarioActual()" id="logout" style="display: none;"></button>
+                                                </td>
+                                                <td>
+                                                    <button class="botones" type="button" id="recargar" onclick="recargarDatos()" style="display: none;">Cargar datos otra vez</button>
+                                                </td>
+                                            </tr>
+                                        </tr>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <br><br>
-                        <button type="button" onclick="calcularIndice()" id="botonCalcular">Calcular Indice de Periodo</button>
+                        
                         <br>
                         <br>
                         <br>
-                        <label for="google" id="sign-in" style="display: none;">Utilizar cuenta de Google para guardar datos</label>
-                        <button class="botones" id="google" onclick="registrarUsuario()" style="display: none;"></button>
-                        <div id="logged-in" style="display: none;"></div>
-                        <button type="button" onclick="quitarUsuarioActual()" id="logout">Salirse</button>
-                        <button type="button" id="recargar" onclick="recargarDatos()" style="display: none;">Cargar datos otra vez</button>
+                        
+                        
+                        
                         <br>
                         <br>
                         <br>
@@ -266,7 +296,7 @@
             <div class="col-sm-1"><a href="informacion.html">
                 <img src="recursos/info.png">
             </a></div>
-            <div class="col-sm-3" id="textoNormal"><a>Indice:</a></div>
+            <div class="col-sm-3" id="textoNormal"><a>Índice:</a></div>
             <div class="col-sm-4"><a href="index.html">Global</a></div>
             <div class="col-sm-4" id="seleccionado"><a href="periodo.html">Periodo</a></div>
         </div>
@@ -276,7 +306,7 @@
             <div class="col-2"style="padding-left: 12px; width: 25%;"><a href="informacion.html">
                 <img src="recursos/info.png">
             </a></div>
-            <div class="col-4" id="textoNormal"><a>Indice:</a></div>
+            <div class="col-4" id="textoNormal"><a>Índice:</a></div>
             <div class="col">
                 <div class="dropup">
                     <button type="button" value="Seleccionar" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="botonDeSeleccion"></button>

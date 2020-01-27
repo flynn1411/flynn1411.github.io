@@ -75,9 +75,9 @@
                 editorDeTabla.borrarDatos();
                 servidor.inicializar();
 
-                if(servidor.usuarioActual){
+                /*if(servidor.usuarioActual){
                     recargarDatos();
-                }
+                }*/
 
                 boton = document.getElementById("botonDeSeleccion");
                 boton.value = "Global";
@@ -214,20 +214,23 @@
             }
 
             function recargarDatos(){
-                console.log(servidor.datos);
-                editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.datos) );
+                //console.log(servidor.datos);
+                ///if(servidor.datos){
+                    editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.datos) );
+                //}
+                
             }
 
         </script>
 
-        <title>Indice Global - Calculadora de Indice Academico</title>
+        <title>Índice Global - Calculadora de Índice Académico</title>
     </head>
 
     <body onload="iniciarPagina()">
 
         <!--Cuerpo de la clase-->
         <div class="jumbotron" id="cuerpo">
-            <div class="container col-sm-4"><h1><strong>Indice Global:</strong></h1></div>
+            <div class="container col-sm-4"><h1><strong>Índice Global:</strong></h1></div>
             <div class="container text-center" id="creadorTabla">
                 <div class="row col-sm-6">
                     <div class="col"><h4>Total de clases cursadas (incluyendo las reprobadas):</h4></div>
@@ -289,7 +292,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <p>Indice Global:</p>
+                                            <p>Índice Global:</p>
                                             <input class="form-control" type="text" readonly ="true" id="indice" class="redondeado"/>
                                               
                                         </td>
@@ -310,7 +313,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <button type="button" onclick="calcularIndice()" id="botonCalcular">Calcular Indice Global</button>
+                                            <button type="button" onclick="calcularIndice()" id="botonCalcular">Calcular Índice Global</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -328,10 +331,22 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label for="google" id="sign-in" style="display: none;">Utilizar cuenta de Google para guardar datos</label>
+                                            <label for="google" id="sign-in" style="display: none;">Ingresar con una cuenta de Google</label>
                                             <button class="botones" id="google" onclick="registrarUsuario()" style="display: none;"></button>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
                                             <div id="logged-in" style="display: none;"></div>
-                                            <button type="button" onclick="quitarUsuarioActual()" id="logout">Salirse</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="logout" id="salir" style="display: none;">Cerrar Sesión</label>
+                                            <button type="button" onclick="quitarUsuarioActual()" id="logout" style="display: none;"></button>
+                                        </td>
+                                        <td>
                                             <button type="button" id="recargar" onclick="recargarDatos()" style="display: none;">Cargar datos otra vez</button>
                                         </td>
                                     </tr>
@@ -358,7 +373,7 @@
             <div class="col-sm-1"><a href="informacion.html">
                 <img src="recursos/info.png">
             </a></div>
-            <div class="col-sm-3" id="textoNormal"><a>Indice:</a></div>
+            <div class="col-sm-3" id="textoNormal"><a>Índice:</a></div>
             <div class="col-sm-4" id="seleccionado"><a href="index.html">Global</a></div>
             <div class="col-sm-4"><a href="periodo.html">Periodo</a></div>
         </div>
@@ -368,7 +383,7 @@
             <div class="col-2" style="padding-left: 12px; width: 25%;"><a href="informacion.html">
                 <img src="recursos/info.png">
             </a></div>
-            <div class="col-4" id="textoNormal"><a>Indice:</a></div>
+            <div class="col-4" id="textoNormal"><a>Índice:</a></div>
             <div class="col">
                 <div class="dropup">
                     <button type="button" value="Seleccionar" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="botonDeSeleccion"></button>

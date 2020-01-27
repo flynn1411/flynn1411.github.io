@@ -26,6 +26,22 @@ function ServidorDeFirebase(){
 function ServidorDeFirebaseInicializar(modo = "global"){
     // Initialize Firebase
     firebase.initializeApp(this.firebaseConfig);
+
+    /*firebase.database().enablePersistence().
+    catch( error => {
+        if (error.code == 'failed-precondition') {
+            // Multiple tabs open, persistence can only be enabled
+            // in one tab at a a time.
+            console.log('Persistence failed.');
+
+        } else if (error.code == 'unimplemented') {
+            // The current browser does not support all of the
+            // features required to enable persistence
+            console.log('Persistence not supported by browser.');
+
+        }
+    });*/
+
     firebase.analytics();
 
     firebase.auth().onAuthStateChanged( user => {
@@ -37,7 +53,7 @@ function ServidorDeFirebaseInicializar(modo = "global"){
         else{
             //document.getElementById("numeroDeClases").value = 4;
             document.getElementById("sign-in").style.display = "block";
-            document.getElementById("logout").style.display = "none";
+            document.getElementById("salir").style.display = "none";
         }
     });
 
@@ -79,7 +95,8 @@ function ServidorDeFirebaseMostrarPopUp(){
             database.ref('users/' + this.usuarioActual.uid).set({
                 nombre : `${this.usuarioActual.displayName}`,
                 correo : `${this.usuarioActual.email}`,
-                correoVerificado : `${this.usuarioActual.emailVerified}`
+                correoVerificado : `${this.usuarioActual.emailVerified}`,
+                id : `${this.usuarioActual.uid}`
             });
 
             //ServidorDeFirebaseMostrarDatos();
@@ -105,7 +122,7 @@ function ServidorDeFirebaseLogout(){
 
         const div = document.getElementById('logged-in');
         div.style.display = "none";
-        document.getElementById("logout").style.display = "none";
+        document.getElementById("salir").style.display = "none";
 
         while(div.firstChild){
             div.firstChild.remove();
@@ -149,13 +166,17 @@ function ServidorDeFirebaseTraerDatos(rama = "global"){
     referencia.on('value', (data) => {
     
         if(rama == "periodo"){
-            this.periodo = data.val()['json'];
+            if(data.val()){
+                this.periodo = data.val()['json'];
+                document.getElementById("recargar").click();
+            }
         }
         else{
-            this.datos = data.val()['global'];
+            if(data.val()['global']){
+                this.datos = data.val()['global'];
+                document.getElementById("recargar").click();
+            }
         }
-
-        document.getElementById("recargar").click();
     });
 
 }
@@ -178,7 +199,7 @@ function ServidorDeFirebaseMostrarDatos(){
     var perfil = document.createElement("img");
     perfil.src = usuarioActual.photoURL;
     perfil.width = 100;
-    perfil.border_radius = 20;
+    perfil.id = "fotoDePerfil";
 
     var titulo = document.createElement("p");
     titulo.innerHTML += `<br><br>Usuario actual: ${usuarioActual.displayName}`;
@@ -189,5 +210,5 @@ function ServidorDeFirebaseMostrarDatos(){
     //div.innerHTML += `<br><br>Usuario actual: ${usuarioActual.displayName}`;
     div.style.display = "block";
 
-    document.getElementById("logout").style.display = "block";
+    document.getElementById("salir").style.display = "block";
 }

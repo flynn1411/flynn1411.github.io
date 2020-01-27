@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-v3.53';
-const dynamicCacheName = 'site-dynamic-v1.3';
+const staticCacheName = 'site-static-v2.55';
+const dynamicCacheName = 'site-dynamic-v2.55';
 
 cacheFiles = [
     './',
@@ -15,7 +15,7 @@ cacheFiles = [
     './CalculadoraAPI/traductorCSV.js',
     './recursos/barraNavegacion.css',
     './recursos/estilo.css',
-    //'./recursos/informacion.css',
+    './recursos/informacion.css',
     //'./recursos/email.png',
     './recursos/favicon.ico',
     //'./recursos/github-logo.png',
@@ -33,6 +33,16 @@ cacheFiles = [
     //'https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js'
 ];
 
+const limitCacheSize = (name, size) =>{
+  caches.open(name).then( cache => {
+    cache.keys().then( keys => {
+      if(keys.length > size){
+        cache.delete(keys[0]).then( limitCacheSize(name,size) );
+      }
+    } )
+  })
+};
+
 self.addEventListener('install', function (event) {
     console.log('SW Installed');
     event.waitUntil(
@@ -45,34 +55,45 @@ self.addEventListener('install', function (event) {
     );
   });
   
-  // activate event
-self.addEventListener('activate', evt => {
-  //console.log('service worker activated');
-  evt.waitUntil(
-    caches.keys().then(keys => {
-      //console.log(keys);
-      return Promise.all(keys
-        .filter(key => key !== staticCacheName && key !== dynamicCacheName)
-        .map(key => caches.delete(key))
-      );
-    })
-  );
-});
+  self.addEventListener('activate', function(event) {
+    event.waitUntil(
+      caches.keys().then( cacheNames => {
+        console.log(cacheNames);
+        return Promise.all(
+          cacheNames.filter( cacheName => {
+            return ((cacheName !== staticCacheName) && (cacheName !== dynamicCacheName));
+          }).map( cacheName => {
+            return caches.delete(cacheName);
+          })
+        );
+      })
+    );
+  });
   
   self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      caches.match(event.request)
-        .then(function(res) {
-          if (res) {
-            return res;
-          } else {
-            return fetch(event.request).then(fetchRes => {
-              return caches.open(dynamicCacheName).then(cache => {
-                cache.put(event.request.url, fetchRes.clone());
-                return fetchRes;
-              })
-            });
-          }
-        }).catch( () => caches.match('/offline.html') )
-    );
+    if( event.request.url.indexOf('firebase.googleapis.com') === -1 ){
+      event.respondWith(
+        caches.match(event.request)
+          .then(function(res) {
+            if (res) {
+              return res;
+            } else {
+              return fetch(event.request).then(fetchRes => {
+                return caches.open(dynamicCacheName).then(cache => {
+                  cache.put(event.request.url, fetchRes.clone());
+                  limitCacheSize(dynamicCacheName, 15);
+                  return fetchRes;
+                })
+              });
+            }
+          }).catch( () => {
+
+            if(event.request.url.indexOf('.html') > -1 ){
+              return caches.match('/offline.html');
+            }
+            
+          } )
+      );
+    }
+    
   });
