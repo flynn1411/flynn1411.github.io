@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-v2.55';
-const dynamicCacheName = 'site-dynamic-v2.55';
+const staticCacheName = 'site-static-v2.6';
+const dynamicCacheName = 'site-dynamic-v2.6';
 
 cacheFiles = [
     './',
@@ -51,7 +51,7 @@ self.addEventListener('install', function (event) {
           for(i=0; i < cacheFiles.length; i++){
               cache.add(cacheFiles[i]);
           }
-        })
+        }).then( () => self.skipWaiting() )
     );
   });
   
