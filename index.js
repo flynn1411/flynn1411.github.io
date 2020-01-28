@@ -27,7 +27,7 @@ function ServidorDeFirebaseInicializar(modo = "global"){
     // Initialize Firebase
     firebase.initializeApp(this.firebaseConfig);
 
-    /*firebase.database().enablePersistence().
+    firebase.firestore().enablePersistence().
     catch( error => {
         if (error.code == 'failed-precondition') {
             // Multiple tabs open, persistence can only be enabled
@@ -40,7 +40,7 @@ function ServidorDeFirebaseInicializar(modo = "global"){
             console.log('Persistence not supported by browser.');
 
         }
-    });*/
+    });
 
     firebase.analytics();
 
@@ -90,16 +90,21 @@ function ServidorDeFirebaseMostrarPopUp(){
         this.usuarioActual = firebase.auth().currentUser;
 
         if (this.usuarioActual != null) {
-            var database = firebase.database();
-        
-            database.ref('users/' + this.usuarioActual.uid).set({
+
+            var db = firebase.firestore();
+
+            db.collection("usuarios").doc(this.usuarioActual.uid).set({
                 nombre : `${this.usuarioActual.displayName}`,
                 correo : `${this.usuarioActual.email}`,
                 correoVerificado : `${this.usuarioActual.emailVerified}`,
                 id : `${this.usuarioActual.uid}`
-            });
-
-            //ServidorDeFirebaseMostrarDatos();
+            })
+            .then( () => {
+                console.log("Success");
+            } ).catch( error => {
+                console.log(error);
+            } );
+        
         }
 
 
@@ -134,19 +139,21 @@ function ServidorDeFirebaseLogout(){
 }
 
 function ServidorDeFirebaseEnviarDatos(datos, rama = "global"){
-    var database = firebase.database();
+    var database = firebase.firestore();
 
     usuarioActual = firebase.auth().currentUser;
 
+    documento = database.collection("notas").doc("XEEBDZHf3jRpqzE0CoODFum60xu1");
+
     if(rama == "periodo"){
-        database.ref('notas/' + usuarioActual.uid + '/periodo').set({
-            json : datos
-        });
+        documento.set({
+            periodo : datos
+        }, {merge : true});
     }
     else{
-        database.ref('notas/' + usuarioActual.uid).set({
+        documento.set({
             global : datos
-        });
+        }, {merge : true});
     }
 
     console.log("completado");
@@ -154,32 +161,34 @@ function ServidorDeFirebaseEnviarDatos(datos, rama = "global"){
 }
 
 function ServidorDeFirebaseTraerDatos(rama = "global"){
-    var database = firebase.database();
+    var database = firebase.firestore();
+    var getOptions = {
+        source : 'default'
+    };
 
     usuarioActual = firebase.auth().currentUser;
-    var referencia = database.ref('notas/' + usuarioActual.uid);
+    var referencia = database.collection("notas").doc(usuarioActual.uid);
 
-    if(rama == "periodo"){
-        referencia = database.ref('notas/' + usuarioActual.uid + '/periodo');
-    }
-
-    referencia.on('value', (data) => {
-    
-        if(rama == "periodo"){
-            if(data.val()){
-                this.periodo = data.val()['json'];
-                document.getElementById("recargar").click();
+    referencia.get(getOptions).then( retrieved => {
+        if(retrieved.exists) {
+            if(rama == "periodo"){
+                this.periodo = retrieved.data()[rama];
             }
+            else{
+                this.datos = retrieved.data()[rama];
+            }
+
+            document.getElementById("recargar").click();
         }
         else{
-            if(data.val()['global']){
-                this.datos = data.val()['global'];
-                document.getElementById("recargar").click();
-            }
+            console.log("Inexstente");
         }
-    });
+    } ).catch( error => {
+        console.log(error);
+    } );
 
 }
+
 
 function ServidorDeFirebaseUsuarioActivo(){
     usuarioConectado = false;
@@ -202,7 +211,8 @@ function ServidorDeFirebaseMostrarDatos(){
     perfil.id = "fotoDePerfil";
 
     var titulo = document.createElement("p");
-    titulo.innerHTML += `<br><br>Usuario actual: ${usuarioActual.displayName}`;
+    titulo.innerHTML += `Usuario actual: ${usuarioActual.displayName}`;
+    titulo.id = "usuario";
 
     div = document.getElementById('logged-in');
     div.appendChild(titulo);
