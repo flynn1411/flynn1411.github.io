@@ -143,7 +143,7 @@ function ServidorDeFirebaseEnviarDatos(datos, rama = "global"){
 
     usuarioActual = firebase.auth().currentUser;
 
-    documento = database.collection("notas").doc("XEEBDZHf3jRpqzE0CoODFum60xu1");
+    documento = database.collection("notas").doc(usuarioActual.uid);
 
     if(rama == "periodo"){
         documento.set({
