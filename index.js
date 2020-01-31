@@ -97,7 +97,8 @@ function ServidorDeFirebaseMostrarPopUp(){
                 nombre : `${this.usuarioActual.displayName}`,
                 correo : `${this.usuarioActual.email}`,
                 correoVerificado : `${this.usuarioActual.emailVerified}`,
-                id : `${this.usuarioActual.uid}`
+                id : `${this.usuarioActual.uid}`,
+                "visibility" : "public"
             })
             .then( () => {
                 console.log("Success");
