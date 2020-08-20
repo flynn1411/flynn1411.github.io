@@ -92,6 +92,9 @@ h1 {
 
 #tabla > tbody > tr > td > input{
     background-color: #d8d8d8 !important;
+    font-family: 'Victor Mono', monospace;
+    padding: 0 0 0 0;
+    max-width: 99%;
 }
 
 #tabla > tbody > tr{
@@ -115,7 +118,8 @@ h1 {
 #resultados > table > tbody > tr > td > p {
     font-size: 1.6rem;
     font-style: italic;
-    font-family: 'Bitter', serif;
+    font-weight: bold;
+    font-family: 'Victor Mono', monospace;
     text-align: left;
 }
 
@@ -184,7 +188,7 @@ input[type="number"] {
 #miscelaneos > table > tbody > tr > td > p {
     font-size: 1.2rem;
     font-style: italic;
-    font-family: 'Bitter', serif;
+    font-family: 'Victor Mono', monospace;
     /*text-align: left;*/
 }
 
@@ -232,8 +236,9 @@ input[type="number"] {
 }
 
 #usuario {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Victor Mono', monospace;
     color: coral;
+    font-style: italic;
 }
 
 #fotoDePerfil {
