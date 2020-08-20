@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-v1.2';
-const dynamicCacheName = 'site-dynamic-v1.2';
+const staticCacheName = 'site-static-v1.2.1';
+const dynamicCacheName = 'site-dynamic-v1.2.1';
 
 cacheFiles = [
     './',
@@ -22,7 +22,7 @@ cacheFiles = [
     './recursos/info.png',
     //'./recursos/paypal.png',
     //'./recursos/twitter.png',
-    'https://fonts.googleapis.com/css?family=Bitter:400i|Fira+Code|Roboto|Ubuntu|Ubuntu+Mono&display=swap',
+    'https://fonts.googleapis.com/css?family=Roboto|Ubuntu|Ubuntu+Mono&display=swap',
     'https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css',
     'https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js',
