@@ -1,9 +1,17 @@
+
 #informacion {
     background-color: #d8d8d8;
     color: #264351;
-    font-family: 'Fira Code', monospace;
+    font-family: 'Victor Mono', monospace;
     text-align: center;
     text-decoration: none;
+    /*font-style: italic;*/
+    font-weight: bold;
+}
+
+h2{
+    font-style: italic;
+    font-weight: bold;
 }
 
 table {
