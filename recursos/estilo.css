@@ -1,13 +1,33 @@
+/*Temas*/
+.light{
+    --bg: #d8d8d8;
+    --fcolor: #264351;
+}
+
+.dark{
+    --bg: #264351;
+    --fcolor: #d8d8d8;
+}
+
+/*Estilos*/
+
+html{
+    background-color: var(--bg) !important;
+    color: var(--fcolor) !important;
+}
+
 body {
     display: inline-block;
     z-index: 0;
     width: 98vw;
     height: 100vh;
+    background-color: var(--bg) !important;
+    color: var(--fcolor) !important;
 }
 
 #cuerpo {
-    background-color: #d8d8d8;
-    color: #264351;
+    background-color: var(--bg);
+    color: var(--fcolor);
     font-family: 'Roboto', sans-serif;
     text-align: center;
     text-decoration: none;
@@ -21,7 +41,7 @@ body {
 
 h1 {
     color: #73ca9c !important;
-    border: 1px solid #264351;
+    border: 1px solid var(--fcolor);
     font-family: 'Ubuntu Mono', monospace;
 }
 
@@ -35,21 +55,21 @@ h1 {
     width: 100%;
     border: none;
     background-color: inherit;
-    color: #d8d8d8;
+    color: var(--bg);
     font-size: x-large; 
     font-weight: bold;
     padding: 0 0 0 0;
 }
 
 #spinner > tbody > tr > td {
-    background-color: #264351;
-    border-color: #264351;
+    background-color: var(--fcolor);
+    border-color: var(--fcolor);
 }
 
 #numeroDeClases {
     float: left;
-    color: #d8d8d8;
-    background-color: #264351;
+    color: var(--bg);
+    background-color: var(--fcolor);
     /*max-width: 100%;*/
     /*width: 4.3rem;*/
     height: auto;
@@ -75,26 +95,28 @@ h1 {
 }
 
 #tabla {
-    border: 1px solid #264351 !important;
+    border: 1px solid var(--fcolor) !important;
 }
 
 #tabla > thead > tr > th{
-    border: 1px solid #264351 !important;
-    background-color: #264351;
-    color: #d8d8d8;
+    border: 1px solid var(--fcolor) !important;
+    background-color: var(--fcolor);
+    color: var(--bg);
     text-align: center;
 }
 
 #tabla > tbody > tr > td {
-    border: 1px solid #264351 !important;
+    border: 1px solid var(--fcolor) !important;
     padding: 0 0 0 0;
 }
 
 #tabla > tbody > tr > td > input{
-    background-color: #d8d8d8 !important;
+    background-color: transparent;
+    color: var(--fcolor);
     font-family: 'Victor Mono', monospace;
     padding: 0 0 0 0;
     max-width: 99%;
+    border: 0;
 }
 
 #tabla > tbody > tr{
@@ -103,6 +125,7 @@ h1 {
 }
 
 #resultados {
+    color: var(--fcolor);
     animation: slide-up 1.0s ease;
     display: none;
 }
@@ -116,6 +139,7 @@ h1 {
 }
 
 #resultados > table > tbody > tr > td > p {
+    color: var(--fcolor);
     font-size: 1.6rem;
     font-style: italic;
     font-weight: bold;
@@ -124,17 +148,17 @@ h1 {
 }
 
 #botonCalcular {
-    background-color: #264351;
-    color: #d8d8d8;
+    background-color: var(--fcolor);
+    color: var(--bg);
     border-radius: 6px;
     border-width: 2px;
-    border-color: #264351;
+    border-color: var(--fcolor);
     font-size: 1.2rem;
 }
 
 #botonCalcular:hover {
     background-color: cadetblue;
-    color: #264351;
+    color: var(--fcolor);
     border-radius: 6px;
     border-width: 2px;
     border-color: cadetblue;
@@ -144,15 +168,16 @@ h1 {
 }
 
 #indice {
-    background-color: #d8d8d8;
-    border-color: #264351;
-    color: #264351;
+    background-color: var(--bg);
+    border-color: var(--fcolor);
+    color: var(--fcolor);
     border-width: 2px;
     font-weight: bold;
 }
 
 #indiceRedondeado {
-    background-color: #d8d8d8;
+    background-color: var(--bg);
+    color: var(--fcolor);
     border-color: coral;
     border-width: 2px;
     font-weight: bold;
@@ -161,7 +186,7 @@ h1 {
 }
 
 #titulo {
-    border: 1px solid #264351;
+    border: 1px solid var(--fcolor);
     border-radius: 6px;
     -webkit-animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 	animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
@@ -193,17 +218,17 @@ input[type="number"] {
 }
 
 #guardar {
-    background-color: #264351;
-    color: #d8d8d8;
+    background-color: var(--fcolor);
+    color: var(--bg);
     border-radius: 6px;
     border-width: 2px;
-    border-color: #264351;
+    border-color: var(--fcolor);
     font-size: 1.2rem;
 }
 
 #fileNameInput {
-    background-color: #d8d8d8;
-    color: #264351;
+    background-color: var(--bg);
+    color: var(--fcolor);
     border: 1px solid #5f9ea0 !important;
 }
 
@@ -212,7 +237,7 @@ input[type="number"] {
     font-size: 1.25em;
     font-weight: 700;
     font-style: italic;
-    color: #264351;
+    color: var(--fcolor);
     background-color: cadetblue;
     border-radius: 6px;
 }
@@ -228,7 +253,7 @@ input[type="number"] {
 }
 
 #logged-in {
-    border: 3px solid #264351;
+    border: 3px solid var(--fcolor);
     border-radius: 6%;
     
     -webkit-animation: slide-fwd-center 0.6s cubic-bezier(0.895, 0.030, 0.685, 0.220) both;
@@ -243,7 +268,7 @@ input[type="number"] {
 
 #fotoDePerfil {
     border-radius: 50%;
-    border: 5px solid #264351;
+    border: 5px solid var(--fcolor);
 
     -webkit-animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -308,28 +333,28 @@ input[type="number"] {
  */
 @-webkit-keyframes shadow-pop-br {
     0% {
-      -webkit-box-shadow: 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351;
-              box-shadow: 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351;
+      -webkit-box-shadow: 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor);
+              box-shadow: 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor);
       -webkit-transform: translateX(0) translateY(0);
               transform: translateX(0) translateY(0);
     }
     100% {
-      -webkit-box-shadow: 1px 1px #264351, 2px 2px #264351, 3px 3px #264351, 4px 4px #264351, 5px 5px #264351, 6px 6px #264351, 7px 7px #264351, 8px 8px #264351;
-              box-shadow: 1px 1px #264351, 2px 2px #264351, 3px 3px #264351, 4px 4px #264351, 5px 5px #264351, 6px 6px #264351, 7px 7px #264351, 8px 8px #264351;
+      -webkit-box-shadow: 1px 1px var(--fcolor), 2px 2px var(--fcolor), 3px 3px var(--fcolor), 4px 4px var(--fcolor), 5px 5px var(--fcolor), 6px 6px var(--fcolor), 7px 7px var(--fcolor), 8px 8px var(--fcolor);
+              box-shadow: 1px 1px var(--fcolor), 2px 2px var(--fcolor), 3px 3px var(--fcolor), 4px 4px var(--fcolor), 5px 5px var(--fcolor), 6px 6px var(--fcolor), 7px 7px var(--fcolor), 8px 8px var(--fcolor);
       -webkit-transform: translateX(-8px) translateY(-8px);
               transform: translateX(-8px) translateY(-8px);
     }
   }
   @keyframes shadow-pop-br {
     0% {
-      -webkit-box-shadow: 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351;
-              box-shadow: 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351, 0 0 #264351;
+      -webkit-box-shadow: 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor);
+              box-shadow: 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor), 0 0 var(--fcolor);
       -webkit-transform: translateX(0) translateY(0);
               transform: translateX(0) translateY(0);
     }
     100% {
-      -webkit-box-shadow: 1px 1px #264351, 2px 2px #264351, 3px 3px #264351, 4px 4px #264351, 5px 5px #264351, 6px 6px #264351, 7px 7px #264351, 8px 8px #264351;
-              box-shadow: 1px 1px #264351, 2px 2px #264351, 3px 3px #264351, 4px 4px #264351, 5px 5px #264351, 6px 6px #264351, 7px 7px #264351, 8px 8px #264351;
+      -webkit-box-shadow: 1px 1px var(--fcolor), 2px 2px var(--fcolor), 3px 3px var(--fcolor), 4px 4px var(--fcolor), 5px 5px var(--fcolor), 6px 6px var(--fcolor), 7px 7px var(--fcolor), 8px 8px var(--fcolor);
+              box-shadow: 1px 1px var(--fcolor), 2px 2px var(--fcolor), 3px 3px var(--fcolor), 4px 4px var(--fcolor), 5px 5px var(--fcolor), 6px 6px var(--fcolor), 7px 7px var(--fcolor), 8px 8px var(--fcolor);
       -webkit-transform: translateX(-8px) translateY(-8px);
               transform: translateX(-8px) translateY(-8px);
     }

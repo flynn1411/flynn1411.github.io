@@ -91,7 +91,11 @@ h1 {
 }
 
 #tabla > tbody > tr > td > input{
-    background-color: #d8d8d8 !important;
+    background-color: transparent;
+    font-family: 'Victor Mono', monospace;
+    padding: 0 0 0 0;
+    max-width: 99%;
+    border: 0;
 }
 
 input[type="number"]::-webkit-inner-spin-button, 

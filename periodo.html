@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html class="light">
     <head>
 
         <meta charset="utf-8">
@@ -45,14 +45,14 @@
         <script src="scripts/editorDeTabla.js"></script>
         <script src="scripts/extractorDeDatos.js"></script>
         <script src="scripts/traductorCSV.js"></script>
-        <script src="scripts/periodo.js"></script>
         <script src="index.js"></script>
+        <script src="scripts/periodo.js"></script>
 
         <title>Índice de Periodo - Calculadora de Índice Académico</title>
 
     </head>
 
-    <body onload="iniciarPagina()">
+    <body class="light" onload="iniciarPagina()">
 
         <!--Cuerpo de la clase-->
         <div class="jumbotron" id="cuerpo">
@@ -189,29 +189,30 @@
 
         <!--Barra de Navegación Escritorio-->
         <div class="row fixed-bottom bg-dark" id="navbar-desktop">
-            <div class="col-sm-1"><a href="informacion.html">
+            <div style="width: 10%"><a href="informacion.html">
                 <img src="recursos/info.png">
             </a></div>
-            <div class="col-sm-3" id="textoNormal"><a>Índice:</a></div>
-            <div class="col-sm-4"><a href="index.html">Global</a></div>
-            <div class="col-sm-4" id="seleccionado"><a href="periodo.html">Periodo</a></div>
+            <div id="textoNormal" style="width: 20%;"><a>Índice:</a></div>
+            <div style="width: 35%;"><a href="index.html">Global</a></div>
+            <div style="width: 35%;" id="seleccionado"><a href="periodo.html">Periodo</a></div>
         </div>
 
         <!--Barra de Navegación Móvil-->
         <div class="row fixed-bottom bg-dark" id="navbar-mobile">
-            <div class="col-2"style="padding-left: 12px; width: 25%;"><a href="informacion.html">
+            <div style="width: 20%;"><a href="informacion.html">
                 <img src="recursos/info.png">
             </a></div>
-            <div class="col-4" id="textoNormal"><a>Índice:</a></div>
-            <div class="col">
+            <div id="textoNormal" style="width: 36%;"><a>Índice:</a></div>
+            <div style="width: 41%;">
                 <div class="dropup">
                     <button type="button" value="Seleccionar" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="botonDeSeleccion"></button>
                     <div class="dropdown-menu" id="opciones">
                         <a class="dropdown-item" href="index.html">Global</a>
-                        <a class="dropdown-item" href="periodo.html" id="seleccionado">Periodo</a>
+                        <a class="dropdown-item" href="periodo.html"  id="seleccionado">Periodo</a>
                     </div>
                 </div>
             </div>
+        </div>
     </body>
 
 </html>
