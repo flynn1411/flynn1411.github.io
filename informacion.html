@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark">
+<html class="light">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,18 +17,7 @@
         <meta name="msapplication-navbutton-color" content="#d8d8d8">
         <!-- iOS Safari -->
         <meta name="apple-mobile-web-app-status-bar-style" content="#d8d8d8">
-
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-        <!-- Popper JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+        
         <title>Información - Calculadora de Índice Académico</title>
 
         <!--PWA-->
@@ -41,76 +30,73 @@
         </script>
     </head>
 
-    <body height="100vh">
-        <div class="jumbotron" id="informacion">
-            <div class="container"><h2>2020</h2></div>
-            <div class="container"><h2>Josué Ariel Izaguirre</h2></div>
-            <div class="container col-sm-4"><br><br>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <img src="recursos/github-logo.png">
-                            </td>
-                            <td>
-                                <a href="https://github.com/flynn1411">flynn1411</a>
-                            </td>
-                        </tr>
-                        <tr><td colspan="2"><br></td> </tr>
-                        <tr>
-                            <td>
-                                <img src="recursos/twitter.png">
-                            </td>
-                            <td>
-                                <a href="https://twitter.com/Flynn1411">@Flynn1411</a>
-                            </td>
-                        </tr>
-                        <tr><td colspan="2"><br></td> </tr>
-                        <tr>
-                            <td>
-                                <img src="recursos/email.png">
-                            </td>
-                            <td>
-                                <a href="mailto:flynn1411@gmail.com">flynn1411@gmail.com</a>
-                            </td>
-                        </tr>
-                        <tr><td colspan="2"><br></td> </tr>
-                        <!--<tr>
-                            <td valign="top">
-                                <img src="recursos/paypal.png">
-                            </td>
-                            <td>
-                                <p>Esta herramienta ha sido desarrollada sin fines de lucro.
-                                    No obstante, si desea dar donaciones ayudaría muchísimo al mantenimiento y optimización de esta herramienta. Si desea contribuir, utilice este link de PayPal:<br> 
-                                    <a href="paypal.me/jaizaguirre" style="font-style: italic;">paypayl.me/jaizaguirre</a>
-                                </p>
-                            </td>
-                        </tr>-->
-                    </tbody>
-                    
-                </table>
-            </div>
+    <body class="light">
+        <div id="informacion">
+            <h2>2020</h2>
+            <h2>Josué Ariel Izaguirre</h2>
+            <br><br>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="recursos/github-logo.png">
+                        </td>
+                        <td>
+                            <a href="https://github.com/flynn1411">flynn1411</a>
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><br></td> </tr>
+                    <tr>
+                        <td>
+                            <img src="recursos/twitter.png">
+                        </td>
+                        <td>
+                            <a href="https://twitter.com/Flynn1411">@Flynn1411</a>
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><br></td> </tr>
+                    <tr>
+                        <td>
+                            <img src="recursos/email.png">
+                        </td>
+                        <td>
+                            <a href="mailto:flynn1411@gmail.com">flynn1411@gmail.com</a>
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><br></td> </tr>
+                    <!--<tr>
+                        <td valign="top">
+                            <img src="recursos/paypal.png">
+                        </td>
+                        <td>
+                            <p>Esta herramienta ha sido desarrollada sin fines de lucro.
+                                No obstante, si desea dar donaciones ayudaría muchísimo al mantenimiento y optimización de esta herramienta. Si desea contribuir, utilice este link de PayPal:<br> 
+                                <a href="paypal.me/jaizaguirre" style="font-style: italic;">paypayl.me/jaizaguirre</a>
+                            </p>
+                        </td>
+                    </tr>-->
+                </tbody>
+                
+            </table>
         </div>
 
         <!--Barra de Navegación Escritorio-->
-        <div class="row fixed-bottom bg-dark" id="navbar-desktop">
-            <div class="col-sm-1" id="seleccionado"><a href="informacion.html">
-                <img src="recursos/info.png">
-            </a></div>
-            <div class="col-sm-3" id="textoNormal"><a>Índice:</a></div>
-            <div class="col-sm-4"><a href="index.html">Global</a></div>
-            <div class="col-sm-4"><a href="periodo.html">Periodo</a></div>
-        </div>
+        <ul id="navbar-desktop">
+            <li style="width: 10%" ><a href="informacion.html"><img src="recursos/info.png" alt="Información"></a></li>
+            <li id="textoNormal" style="width: 20%;">Índice:</li>
+            <li  style="width: 35%;"><a href="index.html" class="navbarText">Global</a></li>
+            <li  style="width: 35%;"><a href="periodo.html" class="navbarText">Periodo</a></li>
+        </ul>
 
         <!--Barra de Navegación Móvil-->
-        <div class="row fixed-bottom bg-dark" id="navbar-mobile">
+        <ul id="navbar-mobile">
             <div class="col-2" id="seleccionado" style="padding-left: 12px; width: 25%;"><a href="informacion.html">
                 <img src="recursos/info.png">
             </a></div>
             <div class="col-4" id="textoNormal" max-width="100% !important"><a>Índice:</a></div>
             <div class="col" max-width="100% !important">
                 <div class="dropup">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="botonDeSeleccion">
+                    <button type="button" data-toggle="dropdown" id="botonDeSeleccion">
                     Info
                     </button>
                     <div class="dropdown-menu" id="opciones">
@@ -120,6 +106,6 @@
                 </div>
             </div>
             
-        </div>
+        </ul>
     </body>
 </html>

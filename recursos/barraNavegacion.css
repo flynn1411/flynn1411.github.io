@@ -8,6 +8,8 @@ body {
     text-decoration: none;
     /*border-radius: 6px;*/
     position: fixed;
+    display: flex;
+    /*justify-content: space-between;*/
     bottom: 0;
     background-color: #264351 !important;
     /*z-index: 1;*/
@@ -27,13 +29,8 @@ body {
     text-decoration: none;
 }
 
-#navbar-desktop > li {
-    display: inline;
-    float: left;
-}
-
 .navbarText{
-    padding: 2vh 11vw;
+    padding-top: 2vh;
 }
 
 #textoNormal{
@@ -43,6 +40,7 @@ body {
     font-family: 'Ubuntu', sans-serif;
     font-size: 2.5rem;
     text-decoration: none;
+    padding-top: 2vh;
 }
 
 #navbar-desktop > li > a > img {
