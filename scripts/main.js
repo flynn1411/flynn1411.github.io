@@ -62,16 +62,16 @@ function calcularIndice(){
         elemento.value = redondeado;
 
         if(redondeado < 65){
-            elemento.style = "color: crimson;";
+            elemento.style = "color: var(--failed);";
         }
         else{
-            elemento.style= "color: #009688;";
+            elemento.style= "color: var(--passed);";
         }
 
         resultados.style = "transition: all 1s ease-out;";
         resultados.style.display = "block";
     }
-               
+    
 }
 
             function guardar(){

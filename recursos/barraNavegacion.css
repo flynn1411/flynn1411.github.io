@@ -1,6 +1,23 @@
-body {
-    background-color: #d8d8d8 !important;
+/*Temas*/
+.light{
+    --bg: #d8d8d8;
+    --fcolor: #264351;
+    --hover-bg: #73ca9c;
+    --hover-fcolor: coral;
+    --passed: #009688;
+    --failed: crimson;
 }
+
+.dark{
+    --bg: #264351;
+    --fcolor: #d8d8d8;
+    --hover-bg: coral;
+    --hover-fcolor: #73ca9c;
+    --passed: #73ca9c;
+    --failed: crimson;
+}
+
+/*Estilos*/
 
 #navbar-desktop, #navbar-mobile {
     text-align: center;
@@ -8,13 +25,13 @@ body {
     border-radius: 6px;
     position: fixed;
     bottom: 0;
-    background-color: #264351 !important;
+    background-color: var(--fcolor) !important;
     z-index: 1;
     max-height: 12%;
 }
 
 #navbar-desktop a, #navbar-mobile a {
-    color: #d8d8d8;
+    color: var(--bg);
     font-family: 'Ubuntu', sans-serif;
     font-size: 2.5rem;
     width: 100%;
@@ -22,7 +39,7 @@ body {
 }
 
 #navbar-desktop > div > a:hover {
-    color: #264351;
+    color: var(--fcolor);
 }
 
 /*#navbar-desktop div, #navbar-mobile div {
@@ -30,8 +47,8 @@ body {
 }*/
 
 #navbar-desktop div:hover, #navbar-mobile div:hover {
-    background-color:  #73ca9c;
-    color: coral;
+    background-color:  var(--hover-bg);
+    color: var(--hover-fcolor);
 }
 
 #navbar-mobile > div > a > img {
@@ -46,47 +63,47 @@ body {
 }
 
 #textoNormal:hover{
-    background-color: #264351 !important;
-    color: #d8d8d8 !important;
+    background-color: var(--fcolor) !important;
+    color: var(--bg) !important;
 }
 
 #textoNormal a:hover{
-    background-color: #264351 !important;
-    color: #d8d8d8 !important;
+    background-color: var(--fcolor) !important;
+    color: var(--bg) !important;
 }
 
 #seleccionado {
-    background-color:  #73ca9c;
+    background-color:  var(--hover-bg);
 }
 
 #botonDeSeleccion {
     white-space: inherit;
-    background-color:#264351;
-    border-color:#264351;
+    background-color: var(--fcolor);
+    border-color:var(--fcolor);
     font-family: 'Ubuntu', sans-serif;
     box-shadow: none;
     height: inherit;
     font-size: 1.9rem;
-    background-color:#73ca9c;
-    border-color: #73ca9c;
+    background-color:var(--hover-bg);
+    border-color: var(--hover-bg);
     padding-left: 0;
     padding-right: 0;
 }
 
 #opciones {
-    background-color: #264351;
-    color: #d8d8d8;
+    background-color: var(--fcolor);
+    color: var(--bg);
 }
 
 #opciones a:hover {
-    background-color:  #73ca9c !important;
-    color: coral !important;
+    background-color:  var(--hover-bg) !important;
+    color: var(--hover-fcolor) !important;
 }
 
 .dropup {
     height: 100%;
-    background-color:#73ca9c;
-    color:coral;
+    background-color:var(--hover-bg);
+    color:var(--hover-fcolor);
 }
 
 /*Cambio de barra de navegacion al cambiar el tamaño de pantalla*/

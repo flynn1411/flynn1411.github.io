@@ -38,10 +38,21 @@
                     navigator.serviceWorker.register('/sw.js');
                 }
             }
+
+            function checkCurrentTheme(){
+                currentTheme = document.body.className;
+
+                newFolder = `recursos/${currentTheme}`;
+
+                github.src = `${newFolder}/github-logo.png`;
+                twitter.src = `${newFolder}/twitter.png`;
+                email.src = `${newFolder}/email.png`;
+                paypal.src = `${newFolder}/paypal.png`;
+            }
         </script>
     </head>
 
-    <body height="100vh">
+    <body class="light" height="100vh">
         <div class="jumbotron" id="informacion">
             <div class="container"><h2>2020</h2></div>
             <div class="container"><h2>Josué Ariel Izaguirre</h2></div>
@@ -50,7 +61,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <img src="recursos/github-logo.png">
+                                <img id="github" src="recursos/github-logo.png">
                             </td>
                             <td>
                                 <a href="https://github.com/flynn1411">flynn1411</a>
@@ -59,7 +70,7 @@
                         <tr><td colspan="2"><br></td> </tr>
                         <tr>
                             <td>
-                                <img src="recursos/twitter.png">
+                                <img id="twitter" src="recursos/twitter.png">
                             </td>
                             <td>
                                 <a href="https://twitter.com/Flynn1411">@Flynn1411</a>
@@ -68,7 +79,7 @@
                         <tr><td colspan="2"><br></td> </tr>
                         <tr>
                             <td>
-                                <img src="recursos/email.png">
+                                <img id="email" src="recursos/email.png">
                             </td>
                             <td>
                                 <a href="mailto:flynn1411@gmail.com">flynn1411@gmail.com</a>
@@ -77,7 +88,7 @@
                         <tr><td colspan="2"><br></td> </tr>
                         <!--<tr>
                             <td valign="top">
-                                <img src="recursos/paypal.png">
+                                <img id="paypal" src="recursos/paypal.png">
                             </td>
                             <td>
                                 <p>Esta herramienta ha sido desarrollada sin fines de lucro.
@@ -120,5 +131,9 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            checkCurrentTheme();
+        </script>
     </body>
 </html>

@@ -31,14 +31,14 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
         <title>Sin Conexión - Calculadora de Indice Academico</title>
     </head>
-    <body height="100vh">
+    <body class="light" height="100vh">
 
         <div class="container-fluid content-center" id="informacion">
             <div class="row">
                 <h2>Habia ponido la pagina aquí</h2>
             </div>
             <div class="row">
-                <img src="recursos/fallback.png" style="max-width: 300px;">
+                <img id="gatito" src="recursos/fallback.png" style="max-width: 300px;">
             </div>
             <div class="row">
                 <h4>No se detecta conexión a internet, por lo que la página no puede ser mostrada.</h4>
@@ -74,5 +74,17 @@
                 </div>
             </div>
         </div>
+
+    <script>
+        function checkCurrentTheme(){
+                currentTheme = document.body.className;
+
+                newFolder = `recursos/${currentTheme}`;
+
+                gatito.src = `${newFolder}/fallback.png`;
+            }
+
+        checkCurrentTheme();
+    </script>
     </body>
 </html>

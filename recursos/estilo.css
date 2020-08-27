@@ -1,20 +1,9 @@
-/*Temas*/
-.light{
-    --bg: #d8d8d8;
-    --fcolor: #264351;
-}
-
-.dark{
-    --bg: #264351;
-    --fcolor: #d8d8d8;
-}
-
 /*Estilos*/
 
-html{
+/*html{
     background-color: var(--bg) !important;
     color: var(--fcolor) !important;
-}
+}*/
 
 body {
     display: inline-block;
@@ -117,6 +106,10 @@ h1 {
     padding: 0 0 0 0;
     max-width: 99%;
     border: 0;
+}
+
+#terminacion {
+    color: var(--fcolor);
 }
 
 #tabla > tbody > tr{

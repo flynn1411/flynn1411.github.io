@@ -1,7 +1,12 @@
+body{
+    background-color: var(--bg) !important;
+    color: var(--fcolor) !important;
+}
+
 
 #informacion {
-    background-color: #d8d8d8;
-    color: #264351;
+    background-color: var(--bg) !important;
+    color: var(--fcolor) !important;
     font-family: 'Victor Mono', monospace;
     text-align: center;
     text-decoration: none;
@@ -19,10 +24,10 @@ table {
 }
 
 table tbody tr td a {
-    color: #264351;
+    color: var(--fcolor);
     text-decoration: none;
 }
 
 table tbody tr td a:hover {
-    color: coral;
+    color: var(--hover-fcolor);
 }
