@@ -41,7 +41,7 @@
     --bg: rgb(54,40,59);
     --fcolor: #ffd319;
     --hover-bg: #ff2975;
-    --hover-fcolor: #73ca9c;
+    --hover-fcolor: #f222ff;
     --passed: #6df1d8;
     --passed-glow: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #6df1d8, 0 0 3px #6df1d8, 0 0 3px #6df1d8, 0 0 8px #6df1d8, 0 0 2px #6df1d8;
     --failed: #ff2975;
