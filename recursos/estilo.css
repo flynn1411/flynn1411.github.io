@@ -10,12 +10,16 @@ body {
     z-index: 0;
     width: 98vw;
     height: 100vh;
+    background: var(--bg-gradient), var(--bg-img);
     background-color: var(--bg) !important;
+    /*background-image: var(--bg-img);*/
     color: var(--fcolor) !important;
 }
 
 #cuerpo {
-    background-color: var(--bg);
+    background: var(--bg-gradient), var(--bg-img);
+    background-color: var(--bg) !important;
+    /*background-image: var(--bg-img);*/
     color: var(--fcolor);
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -29,9 +33,12 @@ body {
 }
 
 h1 {
-    color: #73ca9c !important;
+    color: var(--title) !important;
     border: 1px solid var(--fcolor);
     font-family: 'Ubuntu Mono', monospace;
+    text-shadow:  var(--title-neon);
+    -webkit-text-stroke-width: 0.39px;
+    -webkit-text-stroke-color: black;
 }
 
 #creadorTabla {
@@ -101,7 +108,7 @@ h1 {
 
 #tabla > tbody > tr > td > input{
     background-color: transparent;
-    color: var(--fcolor);
+    color: var(--data-color);
     font-family: 'Victor Mono', monospace;
     padding: 0 0 0 0;
     max-width: 99%;
@@ -150,11 +157,11 @@ h1 {
 }
 
 #botonCalcular:hover {
-    background-color: cadetblue;
+    background-color: var(--button-hover);
     color: var(--fcolor);
     border-radius: 6px;
     border-width: 2px;
-    border-color: cadetblue;
+    border-color: var(--button-hover);
     font-size: 1.2rem;
     -webkit-animation: slide-fwd-center 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	animation: slide-fwd-center 0.45s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -171,16 +178,21 @@ h1 {
 #indiceRedondeado {
     background-color: var(--bg);
     color: var(--fcolor);
-    border-color: coral;
+    border-color: var(--hover-fcolor);
     border-width: 2px;
     font-weight: bold;
     -webkit-animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-	animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+    -webkit-text-stroke-width: 0.39px;
+    -webkit-text-stroke-color: black;
+    font-size: larger;
 }
 
 #titulo {
     border: 1px solid var(--fcolor);
     border-radius: 6px;
+    -webkit-text-stroke-width: 0.4px;
+    -webkit-text-stroke-color: black;
     -webkit-animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 	animation: shadow-pop-br 0.8s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
 }
@@ -217,12 +229,13 @@ input[type="number"] {
     border-width: 2px;
     border-color: var(--fcolor);
     font-size: 1.2rem;
+    padding-right: 1.9vw;
 }
 
 #fileNameInput {
     background-color: var(--bg);
     color: var(--fcolor);
-    border: 1px solid #5f9ea0 !important;
+    border: 1px solid var(--title) !important;
 }
 
 .botones, label {
@@ -231,7 +244,7 @@ input[type="number"] {
     font-weight: 700;
     font-style: italic;
     color: var(--fcolor);
-    background-color: cadetblue;
+    background-color: var(--button-hover);
     border-radius: 6px;
 }
 

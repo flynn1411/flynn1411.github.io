@@ -4,8 +4,18 @@
     --fcolor: #264351;
     --hover-bg: #73ca9c;
     --hover-fcolor: coral;
-    --passed: #009688;
+    --passed: #73ca9c;
+    --passed-glow: none;
     --failed: crimson;
+    --failed-glow: none;
+    --bg-gradient: none;
+    --bg-image: none;
+    --button-hover: cadetblue;
+    --title: #73ca9c;
+    --title-neon: none;
+    --navbar-img: none;
+    --navbar-text: #d8d8d8;
+    --data-color: #264351;
 }
 
 .dark{
@@ -14,12 +24,42 @@
     --hover-bg: coral;
     --hover-fcolor: #73ca9c;
     --passed: #73ca9c;
+    --passed-glow: none;
     --failed: crimson;
+    --failed-glow: none;
+    --bg-gradient: none;
+    --bg-image: none;
+    --button-hover: #73ca9c;
+    --title: #73ca9c;
+    --title-neon: none;
+    --navbar-img: none;
+    --navbar-text: #262626;
+    --data-color: #d8d8d8;
+}
+
+.synthwave{
+    --bg: rgb(54,40,59);
+    --fcolor: #ffd319;
+    --hover-bg: #ff2975;
+    --hover-fcolor: #73ca9c;
+    --passed: #6df1d8;
+    --passed-glow: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #6df1d8, 0 0 3px #6df1d8, 0 0 3px #6df1d8, 0 0 8px #6df1d8, 0 0 2px #6df1d8;
+    --failed: #ff2975;
+    --failed-glow: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #ff2975, 0 0 3px #ff2975, 0 0 3px #ff2975, 0 0 8px #ff2975, 0 0 2px #ff2975;
+    --bg-img: url("synthwave/nightsky.jpg");
+    --bg-gradient: linear-gradient(180deg, rgba(54,40,59,0.8995798148360907) 0%, rgba(10,32,78,0.8435574058725053) 100%);
+    --button-hover: #f222ff;
+    --title:#a6a6a6;
+    --title-neon: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #c0c0c0, 0 0 5px #c0c0c0, 0 0 3px #c0c0c0, 0 0 7px #c0c0c0, 0 0 3px #c0c0c0; 
+    --navbar-img: url("synthwave/gridline.png");
+    --navbar-text: #0cbfe9;
+    --data-color: #ff2975;
 }
 
 /*Estilos*/
 
 #navbar-desktop, #navbar-mobile {
+    background-image: var(--navbar-img);
     text-align: center;
     text-decoration: none;
     border-radius: 6px;
@@ -31,11 +71,12 @@
 }
 
 #navbar-desktop a, #navbar-mobile a {
-    color: var(--bg);
+    color: var(--navbar-text);
     font-family: 'Ubuntu', sans-serif;
     font-size: 2.5rem;
     width: 100%;
     display: block;
+    text-shadow: var(--passed-glow);
 }
 
 #navbar-desktop > div > a:hover {
@@ -63,17 +104,21 @@
 }
 
 #textoNormal:hover{
-    background-color: var(--fcolor) !important;
-    color: var(--bg) !important;
+    background-color: transparent !important;
+    color: var(--navbar-text) !important;
 }
 
 #textoNormal a:hover{
-    background-color: var(--fcolor) !important;
-    color: var(--bg) !important;
+    background-color: transparent !important;
+    color: var(--navbar-text) !important;
 }
 
 #seleccionado {
     background-color:  var(--hover-bg);
+}
+
+#seleccionado a{
+    color: var(--bg);
 }
 
 #botonDeSeleccion {
@@ -88,11 +133,14 @@
     border-color: var(--hover-bg);
     padding-left: 0;
     padding-right: 0;
+    color: var(--bg) !important;
+    text-shadow: var(--passed-glow);
 }
 
 #opciones {
     background-color: var(--fcolor);
     color: var(--bg);
+    text-shadow: var(--passed-glow);
 }
 
 #opciones a:hover {

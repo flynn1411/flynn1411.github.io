@@ -47,12 +47,14 @@
                 github.src = `${newFolder}/github-logo.png`;
                 twitter.src = `${newFolder}/twitter.png`;
                 email.src = `${newFolder}/email.png`;
-                paypal.src = `${newFolder}/paypal.png`;
+                //paypal.src = `${newFolder}/paypal.png`;
+                logo_info_mobile.src = `${newFolder}/info.png`;
+                logo_info_desktop.src = `${newFolder}/info.png`;
             }
         </script>
     </head>
 
-    <body class="light" height="100vh">
+    <body class="synthwave" height="100vh">
         <div class="jumbotron" id="informacion">
             <div class="container"><h2>2020</h2></div>
             <div class="container"><h2>Josué Ariel Izaguirre</h2></div>
@@ -106,7 +108,7 @@
         <!--Barra de Navegación Escritorio-->
         <div class="row fixed-bottom bg-dark" id="navbar-desktop">
             <div style="width: 10%"  id="seleccionado"><a href="informacion.html">
-                <img src="recursos/info.png">
+                <img id="logo_info_desktop" src="recursos/info.png">
             </a></div>
             <div id="textoNormal" style="width: 20%;"><a>Índice:</a></div>
             <div style="width: 35%;"><a href="index.html">Global</a></div>
@@ -116,7 +118,7 @@
         <!--Barra de Navegación Móvil-->
         <div class="row fixed-bottom bg-dark" id="navbar-mobile">
             <div style="width: 20%;"><a href="informacion.html">
-                <img src="recursos/info.png">
+                <img id="logo_info_mobile" src="recursos/info.png">
             </a></div>
             <div id="textoNormal" style="width: 37%;"><a>Índice:</a></div>
             <div style="width: 43%;">

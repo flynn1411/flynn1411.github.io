@@ -37,10 +37,12 @@ function calcularIndice(){
         elemento.value = redondeado;
 
         if(redondeado < 65){
-            elemento.style = "color: var(--failed);";
+            elemento.style = "color: var(--failed)";
+            titulo.style = "text-shadow: var(--failed-glow);";
         }
         else{
-            elemento.style= "color: var(--passed);";
+            elemento.style= "color: var(--passed)";
+            titulo.style = "text-shadow: var(--passed-glow);";
         }
         //document.getElementById("resultados").style = "transition: all 1s ease-out;";
         document.getElementById("resultados").style.display = "block";

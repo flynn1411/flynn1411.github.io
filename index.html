@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark">
+<html>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,11 +62,10 @@
             }
         </script>
 
-
         <title>Índice Global - Calculadora de Índice Académico</title>
     </head>
 
-    <body onload="iniciarPagina()" class="light">
+    <body onload="iniciarPagina()" class="synthwave">
 
         <!--Cuerpo de la clase-->
         <div class="jumbotron" id="cuerpo">
@@ -211,7 +210,7 @@
         <!--Barra de Navegación Escritorio-->
         <div class="row fixed-bottom bg-dark" id="navbar-desktop">
             <div style="width: 10%"><a href="informacion.html">
-                <img src="recursos/info.png">
+                <img id="logo_info_desktop" src="recursos/info.png">
             </a></div>
             <div id="textoNormal" style="width: 20%;"><a>Índice:</a></div>
             <div style="width: 35%;" id="seleccionado"><a href="index.html">Global</a></div>
@@ -221,7 +220,7 @@
         <!--Barra de Navegación Móvil-->
         <div class="row fixed-bottom bg-dark" id="navbar-mobile">
             <div style="width: 20%;"><a href="informacion.html">
-                <img src="recursos/info.png">
+                <img id="logo_info_mobile" src="recursos/info.png">
             </a></div>
             <div id="textoNormal" style="width: 37%;"><a>Índice:</a></div>
             <div style="width: 43%;">
@@ -234,6 +233,20 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function checkCurrentTheme(){
+                currentTheme = document.body.className;
+
+                newFolder = `recursos/${currentTheme}`;
+
+                logo_info_mobile.src = `${newFolder}/info.png`;
+                logo_info_desktop.src = `${newFolder}/info.png`;
+            }
+
+            checkCurrentTheme();
+        </script>
+
     </body>
 
 </html>
