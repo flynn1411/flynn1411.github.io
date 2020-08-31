@@ -56,20 +56,31 @@
 
                 logo_info_mobile.src = `${newFolder}/info.png`;
                 logo_info_desktop.src = `${newFolder}/info.png`;
+                temaActualImg.src = `recursos/${currentTheme}.png`;
             }
+
+            function loadTheme(){
+                currentTheme = localStorage.getItem("theme");
+
+                if(currentTheme){
+                    document.body.className = currentTheme;
+                }
+            }
+
+            loadTheme();
         </script>
 
         <title>Índice de Periodo - Calculadora de Índice Académico</title>
 
     </head>
 
-    <body class="light" onload="iniciarPagina()">
+    <body class="dark" onload="iniciarPagina()">
 
         <!--Cuerpo de la clase-->
-        <div class="jumbotron" id="cuerpo">
+        <div class="jumbotron" id="cuerpo" style="overflow: hidden;">
             <div class="container col-sm-4"><h1><strong>Índice de Periodo:</strong></h1></div>
-            <div class="container text-center" id="creadorTabla">
-                <div class="row col-sm-6">
+            <div class="container text-center" id="creadorTabla" style="overflow:hidden;">
+                <div class="row col-sm-6" style="overflow:hidden;">
                     <div class="col"><h4>Clases cursadas durante el periodo:</h4></div>
                     <div class="container col">
                         <div class="talbe responsive">
@@ -92,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" style="overflow: hidden;">
                     <!--Tabla de Datos-->
                     <div class="container col-sm-6">
                         <div class="table responsive">
@@ -122,7 +133,7 @@
                     </div>
 
                     <!--Resultados-->
-                    <div class="container col-sm-4">
+                    <div class="container col-sm-4" style="overflow:hidden;">
                         <div class="table responsive" id="resultados">
                             <table class="table">
                                 <tbody>
@@ -143,9 +154,24 @@
                             </table>
                         </div>
 
-                        <div class="table responsive" id="miscelaneos">
-                            <table class="table">
+                        <div class="table responsive" id="miscelaneos" style="overflow: hidden;">
+                            <table class="table" style="overflow: hidden;">
                                 <tbody>
+                                    <tr>
+                                        <td>
+                                            <p style="color: var(--fcolor);">Tema Actual:</p>
+                                            <div style="overflow: hidden;">
+                                                <button onclick="showMenu()" id="temaActual">
+                                                    <img id="temaActualImg" src="recursos/light.png" alt="Tema Actual">
+                                                </button><br>
+                                                <ul id="menu_temas">
+                                                    <li onmouseover="previewTheme('light');" onclick="changeTheme('light')"><img class="dropdown-img" src="recursos/light.png" alt="Tema Claro"></li>
+                                                    <li onmouseover="previewTheme('dark');" onclick="changeTheme('dark')"><img class="dropdown-img" src="recursos/dark.png" alt="Tema Oscuro"></li>
+                                                    <li onmouseover="previewTheme('synthwave');" onclick="changeTheme('synthwave')"><img class="dropdown-img" src="recursos/synthwave.png" alt="Tema del 3020"></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td>
                                             <button type="button" onclick="calcularIndice()" id="botonCalcular">Calcular Índice de Periodo</button>
@@ -226,7 +252,32 @@
         </div>
 
         <script>
+            loadTheme();
             checkCurrentTheme();
+
+            function changeTheme(themeName){
+                showMenu();
+                localStorage.setItem("theme", themeName);
+                document.body.className = localStorage.getItem("theme");
+                //saveTheme(localStorage.getItem("theme"));
+                checkCurrentTheme();
+            }
+
+            function previewTheme(themeName){
+                document.body.className = themeName;
+                checkCurrentTheme();
+            }
+
+            function showMenu(){
+                state = menu_temas.style.display;
+
+                if (state === "none"){
+                    menu_temas.style.display = "block";
+                }
+                else{
+                    menu_temas.style.display = "none";
+                }
+            }
         </script>
         
     </body>

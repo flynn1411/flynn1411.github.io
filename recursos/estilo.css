@@ -280,6 +280,39 @@ input[type="number"] {
 	animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
+#temaActual {
+    padding: 0 0 0 0;
+    color: transparent;
+    background-color: transparent;
+    border: none;
+}
+
+#temaActualImg {
+    width: 100%;
+}
+
+#menu_temas {
+    list-style: none;
+    /*max-width: 11vw;*/
+    padding-left: 0;
+    border-radius: 0.3rem;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    background-color: var(--fcolor);
+    display: none;
+    overflow: hidden;
+}
+
+#menu_temas > li{
+    width: 97%;
+}
+
+.dropdown-img {
+    width: 100%;
+    padding-left: 0.5vw;
+}
+
 @keyframes slide-up {
     0% {
         opacity: 0;
@@ -415,5 +448,28 @@ input[type="number"] {
     100% {
       -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
               box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  @media (min-width: 601px) {
+    #temaActual {
+        width: 10.5vw;
+    }
+
+    #menu_temas {
+        width: 10.5vw;
+        right: 9vw;
+    }
+  }
+
+
+@media (max-width: 600px)/* and (max-height: 850px) */{
+    #temaActual {
+        width: 27vw;
+    }
+
+    #menu_temas {
+        width: 27vw;
+        right: 34vw;
     }
   }
