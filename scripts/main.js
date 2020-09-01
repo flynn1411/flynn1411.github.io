@@ -148,6 +148,9 @@ function calcularIndice(){
             function quitarUsuarioActual(){
                 servidor.logout();
                 editorDeTabla.borrarDatos();
+                localStorage.setItem("theme", "light");
+                loadTheme();
+                checkCurrentTheme();
             }
 
             function recargarDatos(){

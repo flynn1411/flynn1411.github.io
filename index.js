@@ -47,6 +47,7 @@ function ServidorDeFirebaseInicializar(modo = "global"){
     firebase.auth().onAuthStateChanged( user => {
         
         if(user){
+            this.traerDatos(modo, "tema");
             this.mostrarDatos();
             this.traerDatos(modo);
         }
@@ -68,7 +69,8 @@ function ServidorDeFirebaseIngresar(){
     // if a user forgets to sign out.
     // ...
     // New sign-in will be persisted with session persistence.
-    return ServidorDeFirebaseMostrarPopUp();
+    ServidorDeFirebaseMostrarPopUp();
+    this.traerDatos(modo, "tema");
   })
   .catch(function(error) {
     // Handle Errors here.
@@ -99,7 +101,8 @@ function ServidorDeFirebaseMostrarPopUp(){
                 correoVerificado : `${this.usuarioActual.emailVerified}`,
                 id : `${this.usuarioActual.uid}`,
                 "visibility" : "public"
-            })
+                //currentTheme: document.body.className
+            }, {merge: true})
             .then( () => {
                 console.log("Success");
             } ).catch( error => {
@@ -139,54 +142,87 @@ function ServidorDeFirebaseLogout(){
     });
 }
 
-function ServidorDeFirebaseEnviarDatos(datos, rama = "global"){
+function ServidorDeFirebaseEnviarDatos(datos, rama = "global", collection = "notas"){
     var database = firebase.firestore();
 
     usuarioActual = firebase.auth().currentUser;
 
-    documento = database.collection("notas").doc(usuarioActual.uid);
+    if(collection === "notas"){
+        
+        documento = database.collection("notas").doc(usuarioActual.uid);
+    
+        if(rama == "periodo"){
+            documento.set({
+                periodo : datos
+            }, {merge : true});
+        }
+        else{
+            documento.set({
+                global : datos
+            }, {merge : true});
+        }
 
-    if(rama == "periodo"){
-        documento.set({
-            periodo : datos
-        }, {merge : true});
-    }
-    else{
-        documento.set({
-            global : datos
-        }, {merge : true});
+    }else{
+        
+        documentoTema = database.collection("usuarios").doc(usuarioActual.uid);
+
+        documentoTema.set({currentTheme: datos},{merge: true});
     }
 
     console.log("completado");
 
 }
 
-function ServidorDeFirebaseTraerDatos(rama = "global"){
+function ServidorDeFirebaseTraerDatos(rama = "global", dato="notas"){
     var database = firebase.firestore();
     var getOptions = {
         source : 'default'
     };
 
     usuarioActual = firebase.auth().currentUser;
-    var referencia = database.collection("notas").doc(usuarioActual.uid);
 
-    referencia.get(getOptions).then( retrieved => {
-        if(retrieved.exists) {
-            if(rama == "periodo"){
-                this.periodo = retrieved.data()[rama];
+    if(dato === "notas"){
+
+        var referencia = database.collection("notas").doc(usuarioActual.uid);
+    
+        referencia.get(getOptions).then( retrieved => {
+            if(retrieved.exists) {
+                if(rama == "periodo"){
+                    this.periodo = retrieved.data()[rama];
+                }
+                else{
+                    this.datos = retrieved.data()[rama];
+                }
+    
+                document.getElementById("recargar").click();
             }
             else{
-                this.datos = retrieved.data()[rama];
+                console.log("Inexstente");
             }
+        } ).catch( error => {
+            console.log(error);
+        } );
 
-            document.getElementById("recargar").click();
+    }
+    else{
+        var referencia = database.collection("usuarios").doc(usuarioActual.uid);
+
+        referencia.get(getOptions).then( obtenido => {
+            if(obtenido.exists) {
+                temaActual = obtenido.data()["currentTheme"];
+                localStorage.setItem("theme", temaActual);
+                loadTheme();
+                checkCurrentTheme();
+            }
+            else{
+                console.log("Inexstente");
+            }
         }
-        else{
-            console.log("Inexstente");
-        }
-    } ).catch( error => {
-        console.log(error);
-    } );
+        ).catch( exception => {
+            console.log(exception);
+        });
+    }
+
 
 }
 

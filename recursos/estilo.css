@@ -113,10 +113,12 @@ h1 {
     padding: 0 0 0 0;
     max-width: 99%;
     border: 0;
+    font-weight: bold;
 }
 
 #terminacion {
     color: var(--fcolor);
+    font-weight: bold;
 }
 
 #tabla > tbody > tr{
@@ -149,11 +151,13 @@ h1 {
 
 #botonCalcular {
     background-color: var(--fcolor);
+    background: var(--fcolor-gradient);
     color: var(--bg);
     border-radius: 6px;
     border-width: 2px;
     border-color: var(--fcolor);
     font-size: 1.2rem;
+    font-weight: bold;
 }
 
 #botonCalcular:hover {
@@ -246,6 +250,7 @@ input[type="number"] {
     color: var(--fcolor);
     background-color: var(--button-hover);
     border-radius: 6px;
+    padding-right: 0.5vw;
 }
 
 .botones:hover, label:hover {
@@ -270,6 +275,7 @@ input[type="number"] {
     font-family: 'Victor Mono', monospace;
     color: coral;
     font-style: italic;
+    font-weight: bold;
 }
 
 #fotoDePerfil {
@@ -448,28 +454,5 @@ input[type="number"] {
     100% {
       -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
               box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
-    }
-  }
-
-  @media (min-width: 601px) {
-    #temaActual {
-        width: 10.5vw;
-    }
-
-    #menu_temas {
-        width: 10.5vw;
-        right: 9vw;
-    }
-  }
-
-
-@media (max-width: 600px)/* and (max-height: 850px) */{
-    #temaActual {
-        width: 27vw;
-    }
-
-    #menu_temas {
-        width: 27vw;
-        right: 34vw;
     }
   }

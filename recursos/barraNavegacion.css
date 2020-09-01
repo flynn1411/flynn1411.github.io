@@ -8,7 +8,8 @@
     --passed-glow: none;
     --failed: crimson;
     --failed-glow: none;
-    --bg-gradient: none;
+    --bg-gradient: var(--hover-fcolor);
+    --fcolor-gradient: var(--hover-bg);
     --bg-image: none;
     --button-hover: cadetblue;
     --title: #73ca9c;
@@ -16,10 +17,11 @@
     --navbar-img: none;
     --navbar-text: #d8d8d8;
     --data-color: #264351;
+    /*--font1 : */
 }
 
 .dark{
-    --bg: #264351;
+    --bg: #16262e;
     --fcolor: #d8d8d8;
     --hover-bg: coral;
     --hover-fcolor: #73ca9c;
@@ -27,7 +29,8 @@
     --passed-glow: none;
     --failed: crimson;
     --failed-glow: none;
-    --bg-gradient: none;
+    --bg-gradient: var(--hover-fcolor);
+    --fcolor-gradient: var(--hover-bg);
     --bg-image: none;
     --button-hover: #73ca9c;
     --title: #73ca9c;
@@ -48,6 +51,7 @@
     --failed-glow: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #ff2975, 0 0 3px #ff2975, 0 0 3px #ff2975, 0 0 8px #ff2975, 0 0 2px #ff2975;
     --bg-img: url("synthwave/nightsky.jpg");
     --bg-gradient: linear-gradient(180deg, rgba(54,40,59,0.8995798148360907) 0%, rgba(10,32,78,0.8435574058725053) 100%);
+    --fcolor-gradient: linear-gradient(180deg, rgba(255,144,31,1) 0%, rgba(255,41,117,1) 100%);
     --button-hover: #f222ff;
     --title:#a6a6a6;
     --title-neon: 0 0 1px #fff, 0 0 1px #fff, 0 0 1px #c0c0c0, 0 0 5px #c0c0c0, 0 0 3px #c0c0c0, 0 0 7px #c0c0c0, 0 0 3px #c0c0c0; 
@@ -89,6 +93,7 @@
 
 #navbar-desktop div:hover, #navbar-mobile div:hover {
     background-color:  var(--hover-bg);
+    background: var(--bg-gradient);
     color: var(--hover-fcolor);
 }
 
@@ -105,6 +110,7 @@
 
 #textoNormal:hover{
     background-color: transparent !important;
+    background: transparent !important;
     color: var(--navbar-text) !important;
 }
 
@@ -115,6 +121,7 @@
 
 #seleccionado {
     background-color:  var(--hover-bg);
+    background: var(--fcolor-gradient);
 }
 
 #seleccionado a{
@@ -124,13 +131,13 @@
 #botonDeSeleccion {
     white-space: inherit;
     background-color: var(--fcolor);
+    background: transparent;
     border-color:var(--fcolor);
     font-family: 'Ubuntu', sans-serif;
     box-shadow: none;
     height: inherit;
     font-size: 1.9rem;
-    background-color:var(--hover-bg);
-    border-color: var(--hover-bg);
+    border-color: transparent;
     padding-left: 0;
     padding-right: 0;
     color: var(--bg) !important;
@@ -145,6 +152,7 @@
 
 #opciones a:hover {
     background-color:  var(--hover-bg) !important;
+    background: var(--fcolor-gradient);
     color: var(--hover-fcolor) !important;
 }
 

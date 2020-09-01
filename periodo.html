@@ -48,33 +48,35 @@
         <script src="index.js"></script>
         <script src="scripts/periodo.js"></script>
 
-        <script>
-            function checkCurrentTheme(){
-                currentTheme = document.body.className;
-
-                newFolder = `recursos/${currentTheme}`;
-
-                logo_info_mobile.src = `${newFolder}/info.png`;
-                logo_info_desktop.src = `${newFolder}/info.png`;
-                temaActualImg.src = `recursos/${currentTheme}.png`;
-            }
-
-            function loadTheme(){
-                currentTheme = localStorage.getItem("theme");
-
-                if(currentTheme){
-                    document.body.className = currentTheme;
-                }
-            }
-
-            loadTheme();
-        </script>
-
         <title>Índice de Periodo - Calculadora de Índice Académico</title>
 
+        <style>
+            @media (min-width: 601px) {
+              #temaActual {
+                  width: 10.5vw;
+              }
+
+              #menu_temas {
+                  width: 10.5vw;
+                  right: 9vw;
+              }
+          }
+
+
+          @media (max-width: 600px)/* and (max-height: 850px) */{
+              #temaActual {
+                  width: 27vw;
+              }
+
+              #menu_temas {
+                  width: 27vw;
+                  right: 34vw;
+              }
+          }
+      </style>
     </head>
 
-    <body class="dark" onload="iniciarPagina()">
+    <body class="light" onload="iniciarPagina()">
 
         <!--Cuerpo de la clase-->
         <div class="jumbotron" id="cuerpo" style="overflow: hidden;">
@@ -159,7 +161,7 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <p style="color: var(--fcolor);">Tema Actual:</p>
+                                            <p style="color: var(--fcolor); font-weight: bold;">Tema Actual:</p>
                                             <div style="overflow: hidden;">
                                                 <button id="temaActual" onclick="showMenu()">
                                                     <img id="temaActualImg" src="recursos/light.png" alt="Tema Actual">
@@ -252,6 +254,24 @@
         </div>
 
         <script>
+            function checkCurrentTheme(){
+                currentTheme = document.body.className;
+
+                newFolder = `recursos/${currentTheme}`;
+
+                logo_info_mobile.src = `${newFolder}/info.png`;
+                logo_info_desktop.src = `${newFolder}/info.png`;
+                temaActualImg.src = `recursos/${currentTheme}.png`;
+            }
+
+            function loadTheme(){
+                currentTheme = localStorage.getItem("theme");
+
+                if(currentTheme){
+                    document.body.className = currentTheme;
+                }
+            }
+
             loadTheme();
             checkCurrentTheme();
 
@@ -260,6 +280,9 @@
                 localStorage.setItem("theme", themeName);
                 document.body.className = localStorage.getItem("theme");
                 //saveTheme(localStorage.getItem("theme"));
+                if(servidor.usuarioActivo()){
+                    servidor.enviarDatos(themeName, "periodo", "tema");
+                }
                 checkCurrentTheme();
             }
 
@@ -275,6 +298,8 @@
                     menu_temas.style.display = "block";
                 }
                 else{
+                    loadTheme();
+                    checkCurrentTheme();
                     menu_temas.style.display = "none";
                 }
             }

@@ -51,6 +51,14 @@
                 logo_info_mobile.src = `${newFolder}/info.png`;
                 logo_info_desktop.src = `${newFolder}/info.png`;
             }
+
+            function loadTheme(){
+                currentTheme = localStorage.getItem("theme");
+
+                if(currentTheme){
+                    document.body.className = currentTheme;
+                }
+            }
         </script>
     </head>
 
@@ -135,6 +143,7 @@
         </div>
 
         <script>
+            loadTheme();
             checkCurrentTheme();
         </script>
     </body>

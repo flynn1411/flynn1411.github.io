@@ -76,6 +76,14 @@
         </div>
 
     <script>
+        function loadTheme(){
+                currentTheme = localStorage.getItem("theme");
+
+                if(currentTheme){
+                    document.body.className = currentTheme;
+                }
+            }
+
         function checkCurrentTheme(){
                 currentTheme = document.body.className;
 
@@ -86,6 +94,7 @@
                 logo_info_desktop.src = `${newFolder}/info.png`;
             }
 
+        loadTheme();
         checkCurrentTheme();
     </script>
     </body>
