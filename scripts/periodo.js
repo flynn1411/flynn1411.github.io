@@ -11,6 +11,10 @@ function iniciarPagina(){
     editorDeTabla.borrarDatos();
     servidor.inicializar("periodo");
 
+    if(!servidor.usuarioActivo()){
+        recargarDatos();
+    }
+
     boton = document.getElementById("botonDeSeleccion");
     boton.value = "Periodo";
     boton.innerHTML = "Periodo";
@@ -24,10 +28,7 @@ function cambiarTabla(){
 
 function calcularIndice(){
     arreglo = extractorDeDatos.extraerDatos();
-
-    if(servidor.usuarioActivo()){
-        crearJSON();
-    }
+    crearJSON();
 
     if(arreglo){
         document.getElementById("indice").value = calculadora.calcularIndicePeriodo(arreglo);
@@ -80,11 +81,17 @@ function limitarDatos(elemento){
     cambiarTabla();
 }
 
-function crearJSON(){
+function crearJSON(razon = "calcular"){
     csv = extractorDeDatos.extraerDatos("guardar");
     json = traductorCSV.csv2json(csv);
 
-    servidor.enviarDatos(json, "periodo");
+    if(servidor.usuarioActivo()){
+        servidor.enviarDatos(json, "periodo");
+    }
+    else{
+        localStorage.setItem("datosPeriodo", JSON.stringify(json))
+    }
+
 }
 
 function registrarUsuario(){
@@ -101,5 +108,22 @@ function quitarUsuarioActual(){
 
 function recargarDatos(){
     //console.log(servidor.periodo);
-    editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.periodo) );
+    if(navigator.onLine){
+        if(servidor.usuarioActivo()){
+            editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.periodo) );
+        }
+        else{
+            if(localStorage.getItem("datosPeriodo")){
+                editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosPeriodo") ) ) );
+            }
+        }
+    }
+    else{
+        if(localStorage.getItem("datosPeriodo")){
+            editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosPeriodo") ) ) );
+        }
+    }
+
 }
+
+//fun

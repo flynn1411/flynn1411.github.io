@@ -51,7 +51,7 @@ function EditorDeTablaAgregarFilas(n){
         uvInput.type = "number";
         uvInput.className = "form-control";
         uvInput.min = "1";
-        uvInput.max = "19";
+        uvInput.max = "20";
         uvInput.setAttribute('oninput', 'limitarDatos(this)');
         
         celdaClase = filaNueva.insertCell(0);

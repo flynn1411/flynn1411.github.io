@@ -10,9 +10,9 @@ function iniciarPagina(){
     editorDeTabla.borrarDatos();
     servidor.inicializar();
 
-    /*if(servidor.usuarioActual){
+    if(!servidor.usuarioActivo()){
         recargarDatos();
-    }*/
+    }
 
     boton = document.getElementById("botonDeSeleccion");
     boton.value = "Global";
@@ -49,10 +49,7 @@ function cambiarTabla(){
 
 function calcularIndice(){
     arreglo = extractorDeDatos.extraerDatos();
-
-    if(servidor.usuarioActivo()){
-        crearJSON();
-    }
+    crearJSON();
 
     if(arreglo){
         indice.value = calculadora.calcularIndiceGlobal(arreglo);
@@ -76,87 +73,102 @@ function calcularIndice(){
     
 }
 
-            function guardar(){
-                arreglo = extractorDeDatos.extraerDatos("guardar");
-                fileName = document.getElementById("fileNameInput").value;
+function guardar(){
+    arreglo = extractorDeDatos.extraerDatos("guardar");
+    fileName = document.getElementById("fileNameInput").value;
 
-                if(fileName == ""){
-                    fileName = "notas";
-                }
+    if(fileName == ""){
+        fileName = "notas";
+    }
 
-                contenido = traductorCSV.arreglo2csv(arreglo);
-                download(`${fileName}.csv`, contenido);
+    contenido = traductorCSV.arreglo2csv(arreglo);
+    download(`${fileName}.csv`, contenido);
+}
+
+function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
+
+function agregar(){
+    elemento = document.getElementById("numeroDeClases");
+    valorActual = parseInt(elemento.value);
+
+    if( (valorActual+1) < ( parseInt(elemento.max) + 1 ) ){
+        elemento.value = valorActual + 1;
+        cambiarTabla();
+    }
+}
+
+function quitar(){
+    elemento = document.getElementById("numeroDeClases");
+    valorActual = parseInt(elemento.value);
+
+    if(valorActual > parseInt(elemento.min)){
+        elemento.value = valorActual - 1;
+        cambiarTabla();
+    }
+}
+
+function limitarDatos(elemento){
+    valorActual = parseInt(elemento.value);
+
+    if( valorActual > parseInt(elemento.max) ){
+        elemento.value = parseInt(elemento.max);
+    }
+
+    cambiarTabla();
+}
+
+function crearJSON(){
+    csv = extractorDeDatos.extraerDatos("guardar");
+    json = traductorCSV.csv2json(csv);
+
+    if(servidor.usuarioActivo()){
+        servidor.enviarDatos(json);
+    }
+    else{
+        localStorage.setItem("datosGlobal", JSON.stringify(json))
+    }
+
+}
+
+function registrarUsuario(){
+    servidor.ingresar();
+}
+
+function quitarUsuarioActual(){
+    servidor.logout();
+    editorDeTabla.borrarDatos();
+    localStorage.setItem("theme", "light");
+    loadTheme();
+    checkCurrentTheme();
+}
+
+function recargarDatos(){
+    //console.log(servidor.periodo);
+    if(navigator.onLine){
+        if(servidor.usuarioActivo()){
+            editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.periodo) );
+        }
+        else{
+            if(localStorage.getItem("datosGlobal")){
+                editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosGlobal") ) ) );
             }
+        }
+    }
+    else{
+        if(localStorage.getItem("datosGlobal")){
+            editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosGlobal") ) ) );
+        }
+    }
 
-            function download(filename, text) {
-                var element = document.createElement('a');
-                element.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(text));
-                element.setAttribute('download', filename);
-
-                element.style.display = 'none';
-                document.body.appendChild(element);
-
-                element.click();
-
-                document.body.removeChild(element);
-            }
-
-            function agregar(){
-                elemento = document.getElementById("numeroDeClases");
-                valorActual = parseInt(elemento.value);
-
-                if( (valorActual+1) < ( parseInt(elemento.max) + 1 ) ){
-                    elemento.value = valorActual + 1;
-                    cambiarTabla();
-                }
-            }
-
-            function quitar(){
-                elemento = document.getElementById("numeroDeClases");
-                valorActual = parseInt(elemento.value);
-
-                if(valorActual > parseInt(elemento.min)){
-                    elemento.value = valorActual - 1;
-                    cambiarTabla();
-                }
-            }
-
-            function limitarDatos(elemento){
-                valorActual = parseInt(elemento.value);
-
-                if( valorActual > parseInt(elemento.max) ){
-                    elemento.value = parseInt(elemento.max);
-                }
-
-                cambiarTabla();
-            }
-
-            function crearJSON(){
-                csv = extractorDeDatos.extraerDatos("guardar");
-                json = traductorCSV.csv2json(csv);
-
-                servidor.enviarDatos(json);
-                //console.log(json);
-                //console.log(`JSON traducido a array:`);
-                //console.log(traductorCSV.json2arreglo(json));
-            }
-
-            function registrarUsuario(){
-                servidor.ingresar();
-            }
-
-            function quitarUsuarioActual(){
-                servidor.logout();
-                editorDeTabla.borrarDatos();
-                localStorage.setItem("theme", "light");
-                loadTheme();
-                checkCurrentTheme();
-            }
-
-            function recargarDatos(){
-                //console.log(servidor.datos);
-                ///if(servidor.datos){
-                    editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.datos) );
-                //}
-                
-            }
+}

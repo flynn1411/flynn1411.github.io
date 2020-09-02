@@ -3,15 +3,18 @@ function ExtractorDeDatos(){
     this.verificarDatos = ExtractorDeDatosVerificarDatos;
 }
 
-function ExtractorDeDatosVerificarDatos(filas){
+function ExtractorDeDatosVerificarDatos(filas, resultado = "calcular"){
     tabla = document.getElementById("datos");
     datosSonValidos = true;
 
     for(i = 0; i < filas; i++){
         for(j = 1; j < 3; j++){
-            if(tabla.rows[i].cells[j].children[0].value == ""){
-                datosSonValidos = false;
-                break;
+
+            if(resultado === "calcular"){
+                if(tabla.rows[i].cells[j].children[0].value == ""){
+                    datosSonValidos = false;
+                    break;
+                }
             }
         }
     }
@@ -24,7 +27,7 @@ function ExtractorDeDatosExtraerDatos(razon = "calcular"){
     datos = [];
     numeroDeFilas = tabla.rows.length;
 
-    if(this.verificarDatos(numeroDeFilas) && (razon == "calcular")){
+    if(this.verificarDatos(numeroDeFilas, razon) && (razon == "calcular")){
         for(i = 0; i < numeroDeFilas; i++){
 
             if( (parseInt(tabla.rows[i].cells[1].children[0].value)) != 0 ){
@@ -40,13 +43,23 @@ function ExtractorDeDatosExtraerDatos(razon = "calcular"){
         return datos;
     }
 
-    else if(this.verificarDatos(numeroDeFilas) && (razon == "guardar")){
+    else if(this.verificarDatos(numeroDeFilas, razon) && (razon == "guardar")){
         datos.push(["Clase","Nota","UV"]);
         for(i = 0; i < numeroDeFilas; i++){
             columnas = [];
             columnas.push(tabla.rows[i].cells[0].children[0].value);
-            columnas.push(parseInt(tabla.rows[i].cells[1].children[0].value));
-            columnas.push(parseInt(tabla.rows[i].cells[2].children[0].value));
+
+            if(tabla.rows[i].cells[1].children[0].value == ""){
+                columnas.push(0);
+            }else{
+                columnas.push(parseInt(tabla.rows[i].cells[1].children[0].value));
+            }
+
+            if(tabla.rows[i].cells[2].children[0].value == ""){
+                columnas.push(0);
+            }else{
+                columnas.push(parseInt(tabla.rows[i].cells[2].children[0].value));
+            }
 
             datos.push(columnas);
         }
