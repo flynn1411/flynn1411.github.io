@@ -71,11 +71,22 @@ function quitar(){
     }
 }
 
-function limitarDatos(elemento){
-    valorActual = parseInt(elemento.value);
+function limpiarDatos(elemento){
+    if(elemento.value.match(/^(([A-Za-z0-9áéíóúÁÉÍÓÚÜü])|(\-))+$/gm) == null){
+        elemento.value = "";
+    }
+}
 
-    if( valorActual > parseInt(elemento.max) ){
-        elemento.value = parseInt(elemento.max);
+function limitarDatos(elemento){
+
+    if(elemento.value.match(/[0-9]{1,3}/gm)){
+        valorActual = parseInt(elemento.value);
+
+        if( valorActual > parseInt(elemento.max) ){
+            elemento.value = parseInt(elemento.max);
+        }
+    }else{
+        elemento.value = "";
     }
 
     cambiarTabla();
@@ -88,9 +99,8 @@ function crearJSON(razon = "calcular"){
     if(servidor.usuarioActivo()){
         servidor.enviarDatos(json, "periodo");
     }
-    else{
-        localStorage.setItem("datosPeriodo", JSON.stringify(json))
-    }
+
+    localStorage.setItem("datosPeriodo", JSON.stringify(json))
 
 }
 

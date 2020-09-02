@@ -39,6 +39,7 @@ function EditorDeTablaAgregarFilas(n){
         claseInput.className = "form-control";
         claseInput.placeholder = `Clase${numeroClase}`;
         claseInput.style = "font-style: italic;";
+        claseInput.setAttribute('oninput', 'limpiarDatos(this)');
 
         notaInput = document.createElement("input");
         notaInput.type = "number";
