@@ -267,7 +267,7 @@
             function loadTheme(){
                 currentTheme = localStorage.getItem("theme");
 
-                if(currentTheme){
+                if(currentTheme != "undefined"){
                     document.body.className = currentTheme;
                 }
             }

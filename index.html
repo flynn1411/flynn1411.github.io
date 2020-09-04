@@ -118,6 +118,11 @@
                             </table>
                         </div>
                     </div>
+                    
+                    <!--<div class="container row" id="registroCambios">
+                        <p>Últimos cambios realizados: </p>
+                        <p id="lastChanges"></p>
+                    </div>-->
 
                 </div>
                 <div class="row justify-content-center" style="overflow: hidden;">
@@ -288,7 +293,7 @@
             function loadTheme(){
                 currentTheme = localStorage.getItem("theme");
 
-                if(currentTheme){
+                if(currentTheme != "undefined"){
                     document.body.className = currentTheme;
                 }
             }
