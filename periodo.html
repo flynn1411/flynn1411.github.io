@@ -120,13 +120,13 @@
                                 <tbody id="datos">
                                     <tr>
                                         <td>
-                                            <input class="form-control" type="text" placeholder="Clase1" style="font-style: italic;"/>
+                                            <input class="form-control" type="text" placeholder="Clase1" oninput="limpiarDatos(this)" style="font-style: italic;"/>
                                         </td>
                                         <td>
                                             <input class="form-control" type="number" min="0" max ="100" oninput="limitarDatos(this)"/>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" min="1" max="18" oninput="limitarDatos(this)"/>
+                                            <input class="form-control" type="number" min="1" max="20" oninput="limitarDatos(this)"/>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -267,7 +267,7 @@
             function loadTheme(){
                 currentTheme = localStorage.getItem("theme");
 
-                if(currentTheme){
+                if(currentTheme != "undefined"){
                     document.body.className = currentTheme;
                 }
             }

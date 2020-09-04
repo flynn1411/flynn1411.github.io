@@ -118,6 +118,11 @@
                             </table>
                         </div>
                     </div>
+                    
+                    <!--<div class="container row" id="registroCambios">
+                        <p>Últimos cambios realizados: </p>
+                        <p id="lastChanges"></p>
+                    </div>-->
 
                 </div>
                 <div class="row justify-content-center" style="overflow: hidden;">
@@ -135,13 +140,13 @@
                                 <tbody id="datos">
                                     <tr>
                                         <td>
-                                            <input class="form-control" type="text" placeholder="Clase1" style="font-style: italic;"/>
+                                            <input class="form-control" type="text" placeholder="Clase1" oninput="limpiarDatos(this)" style="font-style: italic;"/>
                                         </td>
                                         <td>
                                             <input class="form-control" type="number" min="0" max ="100" oninput="limitarDatos(this)"/>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" min="1" max="18" oninput="limitarDatos(this)"/>
+                                            <input class="form-control" type="number" min="1" max="20" oninput="limitarDatos(this)"/>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -203,7 +208,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="text" class="form-control col-sm-5" id="fileNameInput" placeholder="notas"/><p id="terminacion">.csv</p>
+                                            <input type="text" class="form-control col-sm-5" id="fileNameInput" placeholder="notas" oninput="limpiarDatos(this)"/><p id="terminacion">.csv</p>
                                             <label for="guardar" id="bajar">Guardar datos como archivo CSV</label>
                                             <button class="botones" type="button" onclick="guardar()" id="guardar" style="display: none;">Guardar tabla en archivo csv</button class="botones">
                                         </td>
@@ -288,7 +293,7 @@
             function loadTheme(){
                 currentTheme = localStorage.getItem("theme");
 
-                if(currentTheme){
+                if(currentTheme != "undefined"){
                     document.body.className = currentTheme;
                 }
             }

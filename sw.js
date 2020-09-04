@@ -1,14 +1,17 @@
-const staticCacheName = 'site-static-v1.4.3';
-const dynamicCacheName = 'site-dynamic-v1.4.3';
+const staticCacheName = 'site-static-v1.4.4';
+const dynamicCacheName = 'site-dynamic-v1.4.4';
 
 cacheFiles = [
     './',
     './index.html',
     './periodo.html',
-    './informacion.html',
+    //'./informacion.html',
     './index.js',
     './offline.html',
     './recursos/fallback.png',
+    './recursos/light/fallback.png',
+    './recursos/dark/fallback.png',
+    './recursos/synthwave/fallback.png',
     './scripts/main.js',
     './scripts/periodo.js',
     './scripts/calculadora.js',
@@ -22,6 +25,9 @@ cacheFiles = [
     './recursos/favicon.ico',
     './recursos/github-logo.png',
     './recursos/info.png',
+    './recursos/light/info.png',
+    './recursos/dark/info.png',
+    './recursos/synthwave/info.png',
     //'./recursos/paypal.png',
     //'./recursos/twitter.png',
     'https://fonts.googleapis.com/css?family=Roboto|Ubuntu|Ubuntu+Mono&display=swap',

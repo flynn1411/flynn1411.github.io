@@ -11,6 +11,10 @@ function iniciarPagina(){
     editorDeTabla.borrarDatos();
     servidor.inicializar("periodo");
 
+    if(!servidor.usuarioActivo()){
+        recargarDatos();
+    }
+
     boton = document.getElementById("botonDeSeleccion");
     boton.value = "Periodo";
     boton.innerHTML = "Periodo";
@@ -24,10 +28,7 @@ function cambiarTabla(){
 
 function calcularIndice(){
     arreglo = extractorDeDatos.extraerDatos();
-
-    if(servidor.usuarioActivo()){
-        crearJSON();
-    }
+    crearJSON();
 
     if(arreglo){
         document.getElementById("indice").value = calculadora.calcularIndicePeriodo(arreglo);
@@ -70,21 +71,37 @@ function quitar(){
     }
 }
 
-function limitarDatos(elemento){
-    valorActual = parseInt(elemento.value);
+function limpiarDatos(elemento){
+    if(elemento.value.match(/^(([A-Za-z0-9áéíóúÁÉÍÓÚÜü])|(\-))+$/gm) == null){
+        elemento.value = "";
+    }
+}
 
-    if( valorActual > parseInt(elemento.max) ){
-        elemento.value = parseInt(elemento.max);
+function limitarDatos(elemento){
+
+    if(elemento.value.match(/[0-9]{1,3}/gm)){
+        valorActual = parseInt(elemento.value);
+
+        if( valorActual > parseInt(elemento.max) ){
+            elemento.value = parseInt(elemento.max);
+        }
+    }else{
+        elemento.value = "";
     }
 
     cambiarTabla();
 }
 
-function crearJSON(){
+function crearJSON(razon = "calcular"){
     csv = extractorDeDatos.extraerDatos("guardar");
     json = traductorCSV.csv2json(csv);
 
-    servidor.enviarDatos(json, "periodo");
+    if(servidor.usuarioActivo()){
+        servidor.enviarDatos(json, "periodo");
+    }
+
+    localStorage.setItem("datosPeriodo", JSON.stringify(json))
+
 }
 
 function registrarUsuario(){
@@ -101,5 +118,22 @@ function quitarUsuarioActual(){
 
 function recargarDatos(){
     //console.log(servidor.periodo);
-    editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.periodo) );
+    if(navigator.onLine){
+        if(servidor.usuarioActivo()){
+            editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.periodo) );
+        }
+        else{
+            if(localStorage.getItem("datosPeriodo")){
+                editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosPeriodo") ) ) );
+            }
+        }
+    }
+    else{
+        if(localStorage.getItem("datosPeriodo")){
+            editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosPeriodo") ) ) );
+        }
+    }
+
 }
+
+//fun

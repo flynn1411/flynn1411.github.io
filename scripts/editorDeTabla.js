@@ -39,6 +39,7 @@ function EditorDeTablaAgregarFilas(n){
         claseInput.className = "form-control";
         claseInput.placeholder = `Clase${numeroClase}`;
         claseInput.style = "font-style: italic;";
+        claseInput.setAttribute('oninput', 'limpiarDatos(this)');
 
         notaInput = document.createElement("input");
         notaInput.type = "number";
@@ -51,7 +52,7 @@ function EditorDeTablaAgregarFilas(n){
         uvInput.type = "number";
         uvInput.className = "form-control";
         uvInput.min = "1";
-        uvInput.max = "19";
+        uvInput.max = "20";
         uvInput.setAttribute('oninput', 'limitarDatos(this)');
         
         celdaClase = filaNueva.insertCell(0);
