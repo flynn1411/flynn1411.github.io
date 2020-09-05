@@ -53,10 +53,9 @@
             }
 
             function loadTheme(){
-                currentTheme = localStorage.getItem("theme");
 
-                if(currentTheme != "undefined"){
-                    document.body.className = currentTheme;
+                if(localStorage.getItem("theme")){
+                    document.body.className = localStorage.getItem("theme");
                 }
             }
         </script>

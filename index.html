@@ -74,6 +74,10 @@
                     width: 10.5vw;
                     right: 15vw;
                 }
+
+                #registroCambios{
+                    padding-left: 5vw;
+                }
             }
 
 
@@ -90,7 +94,7 @@
         </style>
     </head>
 
-    <body onload="iniciarPagina()" class="light">
+    <body class="light" onload="iniciarPagina()">
 
         <!--Cuerpo de la clase-->
         <div class="jumbotron" id="cuerpo" style="overflow: hidden;">
@@ -119,10 +123,10 @@
                         </div>
                     </div>
                     
-                    <!--<div class="container row" id="registroCambios">
+                    <div class="container row" id="registroCambios">
                         <p>Últimos cambios realizados: </p>
                         <p id="lastChanges"></p>
-                    </div>-->
+                    </div>
 
                 </div>
                 <div class="row justify-content-center" style="overflow: hidden;">
@@ -140,13 +144,13 @@
                                 <tbody id="datos">
                                     <tr>
                                         <td>
-                                            <input class="form-control" type="text" placeholder="Clase1" oninput="limpiarDatos(this)" style="font-style: italic;"/>
+                                            <input class="form-control datosTabla" type="text" placeholder="Clase1" oninput="limpiarDatos(this)" style="font-style: italic;"/>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" min="0" max ="100" oninput="limitarDatos(this)"/>
+                                            <input class="form-control datosTabla" type="number" min="0" max ="100" oninput="limitarDatos(this)"/>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" min="1" max="20" oninput="limitarDatos(this)"/>
+                                            <input class="form-control datosTabla" type="number" min="1" max="20" oninput="limitarDatos(this)"/>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -291,10 +295,9 @@
             }
 
             function loadTheme(){
-                currentTheme = localStorage.getItem("theme");
 
-                if(currentTheme != "undefined"){
-                    document.body.className = currentTheme;
+                if(localStorage.getItem("theme")){
+                    document.body.className = localStorage.getItem("theme");
                 }
             }
 

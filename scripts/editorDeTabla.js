@@ -36,21 +36,21 @@ function EditorDeTablaAgregarFilas(n){
         numeroClase = parseInt(this.numeroDeFilasActual) + (i + 1);
         claseInput = document.createElement("input");
         claseInput.type = "text";
-        claseInput.className = "form-control";
+        claseInput.className = "form-control datosTabla";
         claseInput.placeholder = `Clase${numeroClase}`;
         claseInput.style = "font-style: italic;";
         claseInput.setAttribute('oninput', 'limpiarDatos(this)');
 
         notaInput = document.createElement("input");
         notaInput.type = "number";
-        notaInput.className = "form-control";
+        notaInput.className = "form-control datosTabla";
         notaInput.min = "0";
         notaInput.max = "100";
         notaInput.setAttribute('oninput', 'limitarDatos(this)');
 
         uvInput = document.createElement("input");
         uvInput.type = "number";
-        uvInput.className = "form-control";
+        uvInput.className = "form-control datosTabla";
         uvInput.min = "1";
         uvInput.max = "20";
         uvInput.setAttribute('oninput', 'limitarDatos(this)');
