@@ -167,7 +167,7 @@ function recargarDatos(){
     //console.log(servidor.periodo);
     if(navigator.onLine){
         if(servidor.usuarioActivo()){
-            editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.periodo) );
+            editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.datos) );
         }
         else{
             if(localStorage.getItem("datosGlobal")){
