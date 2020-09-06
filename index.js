@@ -12,6 +12,7 @@ function ServidorDeFirebase(){
     this.usuarioActual = null;
     this.datos = null;
     this.periodo = null;
+    this.ultimasModificaciones = null;
     
     this.inicializar = ServidorDeFirebaseInicializar;
     this.ingresar = ServidorDeFirebaseIngresar;
@@ -61,7 +62,7 @@ function ServidorDeFirebaseInicializar(modo = "global"){
     //console.log(firebase);
 }
 
-function ServidorDeFirebaseIngresar(){
+function ServidorDeFirebaseIngresar(modo="global"){
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
   .then(function() {
     // Existing and future Auth states are now persisted in the current
@@ -163,10 +164,22 @@ function ServidorDeFirebaseEnviarDatos(datos, rama = "global", collection = "not
         }
 
     }else{
+        dataKey = `lastModified-${rama}`;
         
         documentoTema = database.collection("usuarios").doc(usuarioActual.uid);
 
-        documentoTema.set({currentTheme: datos},{merge: true});
+        if(rama==="global"){
+            documentoTema.set({
+                currentTheme: datos["currentTheme"],
+                "lastModified-global": datos[dataKey]
+            },{merge: true});
+        }else{
+            documentoTema.set({
+                currentTheme: datos["currentTheme"],
+                "lastModified-periodo": datos[dataKey]
+            },{merge: true});
+        }
+
     }
 
     console.log("completado");
@@ -209,8 +222,13 @@ function ServidorDeFirebaseTraerDatos(rama = "global", dato="notas"){
 
         referencia.get(getOptions).then( obtenido => {
             if(obtenido.exists) {
+
                 temaActual = obtenido.data()["currentTheme"];
+                ultimasModificaciones = obtenido.data()[`lastModified-${rama}`];
+
+                localStorage.setItem(`lastModified-${rama}`, ultimasModificaciones);
                 localStorage.setItem("theme", temaActual);
+
                 loadTheme();
                 checkCurrentTheme();
             }

@@ -106,14 +106,14 @@ h1 {
     padding: 0 0 0 0;
 }
 
-#tabla > tbody > tr > td > input{
-    background-color: transparent;
-    color: var(--data-color);
-    font-family: 'Victor Mono', monospace;
-    padding: 0 0 0 0;
-    max-width: 99%;
-    border: 0;
-    font-weight: bold;
+.datosTabla{
+    background-color: transparent !important;
+    color: var(--data-color) !important;
+    font-family: 'Victor Mono', monospace !important;
+    padding: 0 0 0 0 !important;
+    max-width: 99% !important;
+    border: 0 !important;
+    font-weight: bold !important;
 }
 
 #terminacion {

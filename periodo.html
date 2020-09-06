@@ -60,6 +60,10 @@
                   width: 10.5vw;
                   right: 9vw;
               }
+
+              #registroCambios{
+                    padding-left: 5vw;
+             }
           }
 
 
@@ -104,6 +108,12 @@
                             </table>
                         </div>
                     </div>
+
+                    <div class="container row" id="registroCambios">
+                        <p>Últimos cambios realizados: </p>
+                        <p id="lastChanges" style="font-style: italic;"></p>
+                    </div>
+
                 </div>
                 <div class="row justify-content-center" style="overflow: hidden;">
                     <!--Tabla de Datos-->
@@ -120,13 +130,13 @@
                                 <tbody id="datos">
                                     <tr>
                                         <td>
-                                            <input class="form-control" type="text" placeholder="Clase1" oninput="limpiarDatos(this)" style="font-style: italic;"/>
+                                            <input class="form-control datosTabla" type="text" placeholder="Clase1" oninput="limpiarDatos(this)" onkeyup="autoSave()" style="font-style: italic;"/>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" min="0" max ="100" oninput="limitarDatos(this)"/>
+                                            <input class="form-control datosTabla" type="number" min="0" max ="100" oninput="limitarDatos(this)" onkeyup="autoSave()"/>
                                         </td>
                                         <td>
-                                            <input class="form-control" type="number" min="1" max="20" oninput="limitarDatos(this)"/>
+                                            <input class="form-control datosTabla" type="number" min="1" max="20" oninput="limitarDatos(this)" onkeyup="autoSave()"/>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -265,10 +275,9 @@
             }
 
             function loadTheme(){
-                currentTheme = localStorage.getItem("theme");
 
-                if(currentTheme != "undefined"){
-                    document.body.className = currentTheme;
+                if(localStorage.getItem("theme")){
+                    document.body.className = localStorage.getItem("theme");
                 }
             }
 
@@ -279,10 +288,12 @@
                 showMenu();
                 localStorage.setItem("theme", themeName);
                 document.body.className = localStorage.getItem("theme");
-                //saveTheme(localStorage.getItem("theme"));
+                changes = localStorage.getItem("lastModified-periodo");
+                
                 if(servidor.usuarioActivo()){
-                    servidor.enviarDatos(themeName, "periodo", "tema");
+                    servidor.enviarDatos({"currentTheme":themeName, "lastModified-periodo": changes}, "periodo", "tema");
                 }
+                //saveTheme(localStorage.getItem("theme"));
                 checkCurrentTheme();
             }
 

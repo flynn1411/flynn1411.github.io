@@ -10,11 +10,11 @@ Aplicación Web que calcula el indice académico universitario.
 
 - Cargar y guardar datos del periodo global como .csv (Comma Separated Value)
 
-- Guardar datos en base de datos FireStore al ingresar con una cuenta de Google.
+- Guardar datos en FireStore al ingresar con una cuenta de Google.
+
+- Guardado automatico (de manera local).
 
 ## A futuro:
-
-- Guardado Automático
 
 - Seguimiento de clases (Global)
 

@@ -53,10 +53,9 @@
             }
 
             function loadTheme(){
-                currentTheme = localStorage.getItem("theme");
 
-                if(currentTheme != "undefined"){
-                    document.body.className = currentTheme;
+                if(localStorage.getItem("theme")){
+                    document.body.className = localStorage.getItem("theme");
                 }
             }
         </script>
@@ -66,7 +65,7 @@
         <div class="jumbotron" id="informacion">
             <div class="container"><h2>2020</h2></div>
             <div class="container"><h2>Josué Ariel Izaguirre</h2></div>
-            <div class="container"><h2><a href="https://github.com/flynn1411/flynn1411.github.io/releases/tag/v1.4.5">v1.4.5</a></h2></div>
+            <div class="container"><h2><a href="https://github.com/flynn1411/flynn1411.github.io/releases/tag/v1.4.6" target="_blank">v1.4.6</a></h2></div>
             <div class="container col-sm-4"><br><br>
                 <table>
                     <tbody>
@@ -97,17 +96,19 @@
                             </td>
                         </tr>
                         <tr><td colspan="2"><br></td> </tr>
-                        <!--<tr>
+                        <tr>
                             <td valign="top">
-                                <img id="paypal" src="recursos/paypal.png">
+                                <!--<img id="paypal" src="recursos/paypal.png">-->
                             </td>
                             <td>
-                                <p>Esta herramienta ha sido desarrollada sin fines de lucro.
-                                    No obstante, si desea dar donaciones ayudaría muchísimo al mantenimiento y optimización de esta herramienta. Si desea contribuir, utilice este link de PayPal:<br> 
-                                    <a href="paypal.me/jaizaguirre" style="font-style: italic;">paypayl.me/jaizaguirre</a>
+                                <p>
+                                    Creada con la intención de facilitarle la vida a los estudiantes. Si deseas saber sobre como funciona o 
+                                    sobre nuevas funcionalidades que se están desarrollando asegurate de revisar el repositorio de la página 
+                                    <a href="https://github.com/flynn1411/flynn1411.github.io" target="_blank">aquí</a>. Cualquier error o problema que puedas 
+                                    encontrar hazmelo saber a través de mi correo. Exitos :)
                                 </p>
                             </td>
-                        </tr>-->
+                        </tr>
                     </tbody>
                     
                 </table>

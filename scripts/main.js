@@ -119,7 +119,7 @@ function quitar(){
 }
 
 function limpiarDatos(elemento){
-    if(elemento.value.match(/^(([A-Za-z0-9áéíóúÁÉÍÓÚÜü])|(\-))+$/gm) == null){
+    if(elemento.value.match(/^(([ A-Za-z0-9áéíóúÁÉÍÓÚÜü])|(\-))+$/gm) == null){
         elemento.value = "";
     }
 }
@@ -139,12 +139,13 @@ function limitarDatos(elemento){
     cambiarTabla();
 }
 
-function crearJSON(){
+function crearJSON(mode = "calcular"){
     csv = extractorDeDatos.extraerDatos("guardar");
     json = traductorCSV.csv2json(csv);
 
-    if(servidor.usuarioActivo()){
+    if(servidor.usuarioActivo() && mode === "calcular"){
         servidor.enviarDatos(json);
+        changeTheme(document.body.className);
     }
     
     localStorage.setItem("datosGlobal", JSON.stringify(json))
@@ -159,6 +160,10 @@ function quitarUsuarioActual(){
     servidor.logout();
     editorDeTabla.borrarDatos();
     localStorage.setItem("theme", "light");
+    localStorage.removeItem("datosPeriodo");
+    localStorage.removeItem("datosGlobal");
+    localStorage.removeItem("lastModified-periodo");
+    localStorage.removeItem("lastModified-global");
     loadTheme();
     checkCurrentTheme();
 }
@@ -168,6 +173,7 @@ function recargarDatos(){
     if(navigator.onLine){
         if(servidor.usuarioActivo()){
             editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.datos) );
+            
         }
         else{
             if(localStorage.getItem("datosGlobal")){
@@ -181,4 +187,29 @@ function recargarDatos(){
         }
     }
 
+    if(localStorage.getItem("lastModified-global") || localStorage.getItem("lastModified-global") != "undefined" ){
+        lastChanges.innerHTML = localStorage.getItem("lastModified-global");
+    }else{
+        lastChanges.innerHTML = "";
+    }
+
+}
+
+function autoSave(){
+    let timeoutId, time = new Date();
+
+    lastChanges.innerHTML = "Guardando...";
+
+    if (timeoutId) clearTimeout(timeoutId);
+    
+    timeoutId = setTimeout(() => {
+        crearJSON("guardar");
+        minutes = time.getMinutes();
+
+        if(minutes < 10) minutes = "0" + minutes;
+
+        timeStamp = `${time.getDate()}/${time.getMonth()}/${time.getFullYear()} ${time.getHours()}:${minutes}`;
+        lastChanges.innerHTML = `${timeStamp}`; 
+        localStorage.setItem("lastModified-global", timeStamp);
+    }, 750);
 }
