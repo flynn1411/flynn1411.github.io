@@ -40,6 +40,7 @@ function EditorDeTablaAgregarFilas(n){
         claseInput.placeholder = `Clase${numeroClase}`;
         claseInput.style = "font-style: italic;";
         claseInput.setAttribute('oninput', 'limpiarDatos(this)');
+        claseInput.setAttribute('onkeyup', 'autoSave()');
 
         notaInput = document.createElement("input");
         notaInput.type = "number";
@@ -47,6 +48,7 @@ function EditorDeTablaAgregarFilas(n){
         notaInput.min = "0";
         notaInput.max = "100";
         notaInput.setAttribute('oninput', 'limitarDatos(this)');
+        notaInput.setAttribute('onkeyup', 'autoSave()');
 
         uvInput = document.createElement("input");
         uvInput.type = "number";
@@ -54,6 +56,7 @@ function EditorDeTablaAgregarFilas(n){
         uvInput.min = "1";
         uvInput.max = "20";
         uvInput.setAttribute('oninput', 'limitarDatos(this)');
+        uvInput.setAttribute('onkeyup', 'autoSave()');
         
         celdaClase = filaNueva.insertCell(0);
         celdaNota = filaNueva.insertCell(1);

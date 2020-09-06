@@ -12,6 +12,7 @@ function ServidorDeFirebase(){
     this.usuarioActual = null;
     this.datos = null;
     this.periodo = null;
+    this.ultimasModificaciones = null;
     
     this.inicializar = ServidorDeFirebaseInicializar;
     this.ingresar = ServidorDeFirebaseIngresar;
@@ -166,7 +167,10 @@ function ServidorDeFirebaseEnviarDatos(datos, rama = "global", collection = "not
         
         documentoTema = database.collection("usuarios").doc(usuarioActual.uid);
 
-        documentoTema.set({currentTheme: datos},{merge: true});
+        documentoTema.set({
+            currentTheme: datos["currentTheme"],
+            lastModified: datos["lastModified"]
+        },{merge: true});
     }
 
     console.log("completado");
@@ -210,6 +214,8 @@ function ServidorDeFirebaseTraerDatos(rama = "global", dato="notas"){
         referencia.get(getOptions).then( obtenido => {
             if(obtenido.exists) {
                 temaActual = obtenido.data()["currentTheme"];
+                this.ultimasModificaciones = obtenido.data()["lastModified"];
+                localStorage.setItem("lastModified", ultimasModificaciones);
                 localStorage.setItem("theme", temaActual);
                 loadTheme();
                 checkCurrentTheme();

@@ -139,11 +139,11 @@ function limitarDatos(elemento){
     cambiarTabla();
 }
 
-function crearJSON(){
+function crearJSON(mode = "calcular"){
     csv = extractorDeDatos.extraerDatos("guardar");
     json = traductorCSV.csv2json(csv);
 
-    if(servidor.usuarioActivo()){
+    if(servidor.usuarioActivo() && mode === "calcular"){
         servidor.enviarDatos(json);
     }
     
@@ -168,10 +168,19 @@ function recargarDatos(){
     if(navigator.onLine){
         if(servidor.usuarioActivo()){
             editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.datos) );
+            
+            document.getElementById("lastChanges").innerHTML = servidor.ultimasModificaciones;
         }
         else{
             if(localStorage.getItem("datosGlobal")){
                 editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosGlobal") ) ) );
+            }
+
+            if(localStorage.getItem("lastModified")){
+                document.getElementById("lastChanges").innerHTML = localStorage.getItem("lastModified");
+            }
+            else{
+                document.getElementById("lastChanges").innerHTML = "";
             }
         }
     }
@@ -179,6 +188,32 @@ function recargarDatos(){
         if(localStorage.getItem("datosGlobal")){
             editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosGlobal") ) ) );
         }
+
+        if(localStorage.getItem("lastModified")){
+            document.getElementById("lastChanges").innerHTML = localStorage.getItem("lastModified");
+        }
+        else{
+            document.getElementById("lastChanges").innerHTML = "";
+        }
     }
 
+}
+
+function autoSave(){
+    let timeoutId, time = new Date();
+
+    lastChanges.innerHTML = "Guardando...";
+
+    if (timeoutId) clearTimeout(timeoutId);
+    
+    timeoutId = setTimeout(() => {
+        crearJSON("guardar");
+        minutes = time.getMinutes();
+
+        if(minutes < 10) minutes = "0" + minutes;
+
+        timeStamp = `${time.getDate()}/${time.getMonth()}/${time.getFullYear()} ${time.getHours()}:${minutes}`;
+        lastChanges.innerHTML = `${timeStamp}`; 
+        localStorage.setItem("lastModified", timeStamp);
+    }, 750);
 }
