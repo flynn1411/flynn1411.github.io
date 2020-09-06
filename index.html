@@ -308,10 +308,10 @@
                 showMenu();
                 localStorage.setItem("theme", themeName);
                 document.body.className = localStorage.getItem("theme");
-                changes = localStorage("lastModified");
+                changes = localStorage.getItem("lastModified-global");
                 
                 if(servidor.usuarioActivo()){
-                    servidor.enviarDatos({"currentTheme":themeName, "lastModified": changes}, "global", "tema");
+                    servidor.enviarDatos({"currentTheme":themeName, "lastModified-global": changes}, "global", "tema");
                 }
                 //saveTheme(localStorage.getItem("theme"));
                 checkCurrentTheme();
