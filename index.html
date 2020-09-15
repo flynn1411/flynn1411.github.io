@@ -206,20 +206,20 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label for="archivo" id="subir">Utilizar archivo CSV</label>
+                                            <label class="botones" for="archivo" id="subir">Utilizar archivo CSV</label>
                                             <input class="botones" type="file" id="archivo" oninput="extraerDeCSV()" style="display: none;"/>
                                         </td>   
                                     </tr>
                                     <tr>
                                         <td>
                                             <input type="text" class="form-control col-sm-5" id="fileNameInput" placeholder="notas" oninput="limpiarDatos(this)"/><p id="terminacion">.csv</p>
-                                            <label for="guardar" id="bajar">Guardar datos como archivo CSV</label>
+                                            <label class="botones" for="guardar" id="bajar">Guardar datos como archivo CSV</label>
                                             <button class="botones" type="button" onclick="guardar()" id="guardar" style="display: none;">Guardar tabla en archivo csv</button class="botones">
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label for="google" id="sign-in" style="display: none;">Ingresar con una cuenta de Google</label>
+                                            <label class="botones" for="google" id="sign-in" style="display: none;">Ingresar con una cuenta de Google</label>
                                             <button class="botones" id="google" onclick="registrarUsuario()" style="display: none;"></button>
                                             
                                         </td>
@@ -231,7 +231,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label for="logout" id="salir" style="display: none;">Cerrar Sesión</label>
+                                            <label class="botones" for="logout" id="salir" style="display: none;">Cerrar Sesión</label>
                                             <button type="button" onclick="quitarUsuarioActual()" id="logout" style="display: none;"></button>
                                         </td>
                                         <td>

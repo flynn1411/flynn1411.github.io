@@ -1,5 +1,6 @@
-function EditorDeTabla(numeroDeFilasActual = 1){
+function EditorDeTabla(numeroDeFilasActual = 1, mode="global"){
     this.numeroDeFilasActual = numeroDeFilasActual;
+    this.mode = mode;
 
     this.editarTabla = EditorDeTablaEditarTabla;
     this.agregarFilas = EditorDeTablaAgregarFilas;
@@ -11,16 +12,19 @@ function EditorDeTabla(numeroDeFilasActual = 1){
 function EditorDeTablaEditarTabla(n = parseInt(document.getElementById("numeroDeClases").value)){
     //n = parseInt(n);
 
-    if( (n > 0 ) && (n <= (parseInt(document.getElementById("numeroDeClases").max) + 1) ) ){
-         if(this.numeroDeFilasActual < n){
-            this.agregarFilas(n-this.numeroDeFilasActual);
-            this.numeroDeFilasActual = n;
-        }
-        else if(this.numeroDeFilasActual > n){
-            this.quitarFilas(this.numeroDeFilasActual-n);
-            this.numeroDeFilasActual = n;
+    if(this.mode === "global"){
+        if( (n > 0 ) && (n <= (parseInt(document.getElementById("numeroDeClases").max) + 1) ) ){
+             if(this.numeroDeFilasActual < n){
+                this.agregarFilas(n-this.numeroDeFilasActual);
+                this.numeroDeFilasActual = n;
+            }
+            else if(this.numeroDeFilasActual > n){
+                this.quitarFilas(this.numeroDeFilasActual-n);
+                this.numeroDeFilasActual = n;
+            }
         }
     }
+
     
 }
 

@@ -1,19 +1,19 @@
 calculadora = new CalculadoraIndice();
-editorDeTabla = new EditorDeTabla();
+editorDeTabla = new EditorDeTabla("periodo");
 extractorDeDatos = new ExtractorDeDatos();
 traductorCSV = new TraductorDeCSV();
-var servidor = new ServidorDeFirebase();
+//var servidor = new ServidorDeFirebase();
 
 function iniciarPagina(){
     //cargarPWA();
-    cambiarTabla();
+    //cambiarTabla();
 
-    editorDeTabla.borrarDatos();
-    servidor.inicializar("periodo");
+    //editorDeTabla.borrarDatos();
+    //servidor.inicializar("periodo");
 
-    if(!servidor.usuarioActivo()){
+    /*if(!servidor.usuarioActivo()){
         recargarDatos();
-    }
+    }*/
 
     boton = document.getElementById("botonDeSeleccion");
     boton.value = "Periodo";
@@ -71,13 +71,19 @@ function quitar(){
     }
 }
 
-function limpiarDatos(elemento){
+function limpiarDatos(elemento, area="nombre"){
+
     if(elemento.value.match(/^(([ A-Za-z0-9áéíóúÁÉÍÓÚÜü])|(\-))+$/gm) == null){
         elemento.value = "";
     }
+
+    if(area === "nombre"){
+        parentRow = elemento.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+        tabla.rows[parentRow.rowIndex-1].cells[0].children[0].value = elemento.value;
+    }
 }
 
-function limitarDatos(elemento){
+function limitarDatos(elemento, area = "spinner"){
 
     if(elemento.value.match(/[0-9]{1,3}/gm)){
         valorActual = parseInt(elemento.value);
@@ -89,7 +95,18 @@ function limitarDatos(elemento){
         elemento.value = "";
     }
 
-    cambiarTabla();
+    if(area != "spinner"){
+        parentRow = elemento.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
+
+        if(area === "UV"){
+            tabla.rows[parentRow.rowIndex-1].cells[2].children[0].value = elemento.value;
+        }else{
+            //console.log(parentRow);
+            tabla.rows[parentRow.rowIndex-1].cells[1].children[0].value = elemento.value;
+        }
+    }
+
+    //cambiarTabla();
 }
 
 function crearJSON(razon = "calcular"){
@@ -165,4 +182,23 @@ function autoSave(){
         lastChanges.innerHTML = `${timeStamp}`; 
         localStorage.setItem("lastModified-periodo", timeStamp);
     }, 750);
+}
+
+function accordion(elemento){
+    hiddenContent = document.getElementById("tabla").rows[elemento.rowIndex+1];
+
+    if(hiddenContent.style.display === "none"){
+        hiddenContent.style.display = "table-row";
+        setTimeout(()=>{
+            hiddenContent.cells[0].children[0].style.maxHeight = "80vh";
+        }, 10);
+    }
+    
+    else{
+        hiddenContent.cells[0].children[0].style.maxHeight = "0vh";
+        setTimeout(()=>{
+            hiddenContent.style.display = "none";
+        }, 750);
+        
+    }
 }

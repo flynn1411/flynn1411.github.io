@@ -102,7 +102,7 @@
                                         <td>
                                             <button id="mas" class="botonesDeSpinner" onclick="agregar()">+</button>
                                         </td>
-                                    </tr> 
+                                    </tr>
                                 </tbody>
                                 
                             </table>
@@ -117,26 +117,115 @@
                 </div>
                 <div class="row justify-content-center" style="overflow: hidden;">
                     <!--Tabla de Datos-->
-                    <div class="container col-sm-6">
+                    <div class="container col-sm-8">
                         <div class="table responsive">
                             <table class="table table-bordered" id="tabla">
                                 <thead>
                                     <tr>
-                                        <th>Clase</th>
-                                        <th>Nota</th>
-                                        <th>UV</th>
+                                        <th colspan="2">Clase</th>
+                                        <th colspan="2">Nota</th>
+                                        <th colspan="2">UV</th>
                                     </tr>
                                 </thead>
                                 <tbody id="datos">
-                                    <tr>
-                                        <td>
-                                            <input class="form-control datosTabla" type="text" placeholder="Clase1" oninput="limpiarDatos(this)" onkeyup="autoSave()" style="font-style: italic;"/>
+                                    <tr class="datosTabla" onclick="accordion(this);">
+                                        <td colspan="2">
+                                            <input class="form-control datosTabla" type="text" placeholder="Clase1" readonly="true" style="font-style: italic;"/>
                                         </td>
-                                        <td>
-                                            <input class="form-control datosTabla" type="number" min="0" max ="100" oninput="limitarDatos(this)" onkeyup="autoSave()"/>
+                                        <td colspan="2">
+                                            <input class="form-control datosTabla" type="number" readonly="true" />
                                         </td>
-                                        <td>
-                                            <input class="form-control datosTabla" type="number" min="1" max="20" oninput="limitarDatos(this)" onkeyup="autoSave()"/>
+                                        <td colspan="2">
+                                            <input class="form-control datosTabla" type="number" readonly="true" />
+                                        </td>
+                                    </tr>
+                                    <tr style="display: none;">
+                                        <td colspan="6">
+                                            <div class="classInfo">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="3">
+                                                                <input class="form-control datosClase" type="text" placeholder="Clase1" oninput="limpiarDatos(this)" style="font-style: italic;"/>
+                                                            </th>
+                                                            <th colspan="3">
+                                                                <input class="form-control datosClase" type="number" placeholder="UV" min="1" max="20" oninput="limitarDatos(this, 'UV')"/>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="4">Nota Final:</td>
+                                                            <td colspan="2">
+                                                                <input class="form-control datosClase" type="number" placeholder="Nota" min="0" max="100" oninput="limitarDatos(this, 'global')"/>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3">Parciales:</td>
+                                                            <td colspan="1">-</td>
+                                                            <td colspan="1">
+                                                                <input class="form-control" type="number" style="max-width: 90%;">
+                                                            </td>
+                                                            <td colspan="1">+</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="4">Parcial</td>
+                                                            <td colspan="1">Total de 100</td>
+                                                            <td colspan="1">
+                                                                Porcentaje de Nota Final
+                                                                ( 
+                                                                    <input type="checkbox" name="partesIguales" id="partesIguales">
+                                                                    <label for="partesIguales">
+                                                                        En partes iguales.
+                                                                    </label>
+                                                                )
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="comienzoParcial">
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr class="datosTabla" onclick="accordion(this);">
+                                        <td colspan="2">
+                                            <input class="form-control datosTabla" type="text" placeholder="Clase2" readonly="true" style="font-style: italic;"/>
+                                        </td>
+                                        <td colspan="2">
+                                            <input class="form-control datosTabla" type="number" readonly="true" />
+                                        </td>
+                                        <td colspan="2">
+                                            <input class="form-control datosTabla" type="number" readonly="true" />
+                                        </td>
+                                    </tr>
+                                    <tr style="display: none;">
+                                        <td colspan="6">
+                                            <div class="classInfo">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th colspan="3">
+                                                                <input class="form-control datosClase" type="text" placeholder="Clase2" oninput="limpiarDatos(this)" style="font-style: italic;"/>
+                                                            </th>
+                                                            <th colspan="3">
+                                                                <input class="form-control datosClase" type="number" placeholder="UV" min="1" max="20" oninput="limitarDatos(this, 'UV')"/>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="4">Nota Final:</td>
+                                                            <td colspan="2">
+                                                                <input class="form-control datosClase" type="number" placeholder="Nota" min="0" max="100" oninput="limitarDatos(this, 'global')"/>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -191,7 +280,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label for="google" id="sign-in" style="display: none;">Ingresar con una cuenta de Google</label>
+                                            <label class="botones" for="google" id="sign-in" style="display: none;">Ingresar con una cuenta de Google</label>
                                             <button class="botones" id="google" onclick="registrarUsuario()" style="display: none;"></button>
                                         </td>
                                         <tr>
@@ -200,7 +289,7 @@
                                             </td>
                                             <tr>
                                                 <td>
-                                                    <label for="logout" id="salir" style="display: none;">Cerrar Sesión</label>
+                                                    <label class="botones" for="logout" id="salir" style="display: none;">Cerrar Sesión</label>
                                                     <button type="button" onclick="quitarUsuarioActual()" id="logout" style="display: none;"></button>
                                                 </td>
                                                 <td>

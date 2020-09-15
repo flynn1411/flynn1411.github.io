@@ -114,6 +114,12 @@ h1 {
     max-width: 99% !important;
     border: 0 !important;
     font-weight: bold !important;
+    -webkit-animation: scale-up-ver-top 0.6s cubic-bezier(0.860, 0.000, 0.070, 1.000) both;
+	animation: scale-up-ver-top 0.6s cubic-bezier(0.860, 0.000, 0.070, 1.000) both;
+}
+
+.datosTabla:focus{
+    box-shadow: none !important;
 }
 
 #terminacion {
@@ -121,10 +127,10 @@ h1 {
     font-weight: bold;
 }
 
-#tabla > tbody > tr{
+/*#tabla > tbody > tr{
     -webkit-animation: scale-up-ver-top 0.6s cubic-bezier(0.860, 0.000, 0.070, 1.000) both;
 	animation: scale-up-ver-top 0.6s cubic-bezier(0.860, 0.000, 0.070, 1.000) both;
-}
+}*/
 
 #resultados {
     color: var(--fcolor);
@@ -242,7 +248,7 @@ input[type="number"] {
     border: 1px solid var(--title) !important;
 }
 
-.botones, label {
+.botones/*, label */{
     cursor: pointer; /* "hand" cursor */
     font-size: 1.25em;
     font-weight: 700;
@@ -253,7 +259,7 @@ input[type="number"] {
     padding-right: 0.5vw;
 }
 
-.botones:hover, label:hover {
+.botones:hover/*, label:hover */{
     cursor: pointer; /* "hand" cursor */
     font-size: 1.25em;
     font-weight: 700;
@@ -312,6 +318,15 @@ input[type="number"] {
 
 #menu_temas > li{
     width: 97%;
+}
+
+.classInfo {
+    max-width: 99%;
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: max-height 0.8s ease;
+    -moz-transition: max-height 0.8s ease;
+    transition: max-height 0.8s ease;
 }
 
 .dropdown-img {
