@@ -170,27 +170,14 @@ function quitarUsuarioActual(){
 
 function recargarDatos(){
     //console.log(servidor.periodo);
-    if(navigator.onLine){
-        if(servidor.usuarioActivo()){
-            editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.datos) );
-            
-        }
-        else{
-            if(localStorage.getItem("datosGlobal")){
-                editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosGlobal") ) ) );
-            }
-        }
-    }
-    else{
-        if(localStorage.getItem("datosGlobal")){
-            editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosGlobal") ) ) );
-        }
+    if(localStorage.getItem("datosGlobal")){
+        editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosGlobal") ) ) );
     }
 
     if(localStorage.getItem("lastModified-global") || localStorage.getItem("lastModified-global") != "undefined" ){
         lastChanges.innerHTML = localStorage.getItem("lastModified-global");
     }else{
-        lastChanges.innerHTML = "";
+        lastChanges.innerHTML = "N/A";
     }
 
 }
