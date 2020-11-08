@@ -1,5 +1,5 @@
-const staticCacheName = 'site-static-v1.4.6';
-const dynamicCacheName = 'site-dynamic-v1.4.6';
+const staticCacheName = 'site-static-v1.4.7';
+const dynamicCacheName = 'site-dynamic-v1.4.7';
 
 cacheFiles = [
     './',
@@ -52,7 +52,7 @@ const limitCacheSize = (name, size) =>{
   })
 };
 
-self.addEventListener('install', function (event) {
+self.addEventListener('install', function ( event ) {
     console.log('SW Installed');
     event.waitUntil(
       caches.open(staticCacheName)

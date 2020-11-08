@@ -202,9 +202,11 @@ function ServidorDeFirebaseTraerDatos(rama = "global", dato="notas"){
             if(retrieved.exists) {
                 if(rama == "periodo"){
                     this.periodo = retrieved.data()[rama];
+                    localStorage.setItem("datosPeriodo", JSON.stringify(this.periodo));
                 }
                 else{
                     this.datos = retrieved.data()[rama];
+                    localStorage.setItem("datosGlobal", JSON.stringify(this.datos));
                 }
     
                 document.getElementById("recargar").click();

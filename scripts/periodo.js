@@ -123,27 +123,14 @@ function quitarUsuarioActual(){
 
 function recargarDatos(){
     //console.log(servidor.periodo);
-    if(navigator.onLine){
-        if(servidor.usuarioActivo()){
-            editorDeTabla.llenarDatos( traductorCSV.json2arreglo(servidor.periodo) );
-            
-        }
-        else{
-            if(localStorage.getItem("datosPeriodo")){
-                editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosPeriodo") ) ) );
-            }
-        }
-    }
-    else{
-        if(localStorage.getItem("datosPeriodo")){
-            editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosPeriodo") ) ) );
-        }
+    if(localStorage.getItem("datosPeriodo")){
+        editorDeTabla.llenarDatos( traductorCSV.json2arreglo( JSON.parse( localStorage.getItem("datosPeriodo") ) ) );
     }
 
     if(localStorage.getItem("lastModified-periodo") || localStorage.getItem("lastModified-periodo") != "undefined"){
         lastChanges.innerHTML = localStorage.getItem("lastModified-periodo");
     }else{
-        lastChanges.innerHTML = "";
+        lastChanges.innerHTML = "N/A";
     }
 
 }
