@@ -1,55 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="manifest" href="./manifest.json">
-        <link rel="apple-touch-icon" href="/recursos/icon.png">
-        <link rel="stylesheet" href="recursos/barraNavegacion.css">
-        <link rel="stylesheet" href="recursos/informacion.css">
-        <link rel="stylesheet" href="recursos/estilo.css">
-        <link rel="shortcut icon" href="recursos/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="recursos/favicon.ico" type="image/x-icon">
-        <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu|Ubuntu+Mono&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/victormono@latest/dist/index.min.css">  
-
-        <!-- Chrome, Firefox OS and Opera -->
-        <meta name="theme-color" content="#d8d8d8">
-        <!-- Windows Phone -->
-        <meta name="msapplication-navbutton-color" content="#d8d8d8">
-        <!-- iOS Safari -->
-        <meta name="apple-mobile-web-app-status-bar-style" content="#d8d8d8">
-
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-        <!-- Popper JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
-
-        <!-- TODO: Add SDKs for Firebase products that you want to use
-        https://firebase.google.com/docs/web/setup#available-libraries -->
-        <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
-        <script defer src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
-        <script defer src="https://www.gstatic.com/firebasejs/7.7.0/firebase-firestore.js"></script>
-
-
-        <!--Importación de librerías-->
-        <script src="scripts/calculadora.js"></script>
-        <script src="scripts/editorDeTabla.js"></script>
-        <script src="scripts/extractorDeDatos.js"></script>
-        <script src="scripts/traductorCSV.js"></script>
-        <script src="index.js"></script>
-        <script src="scripts/main.js"></script>
-
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Yanone+Kaffeesatz:wght@700&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="style.css">
+        
         <!--PWA-->
         <script>
             function cargarPWA(){
@@ -60,281 +17,22 @@
                     );
                 }
             }
+
+            cargarPWA();
         </script>
 
-        <title>Índice Global - Calculadora de Índice Académico</title>
+        <title>En Construcción</title>
 
-        <style>
-              @media (min-width: 601px) {
-                #temaActual {
-                    width: 10.5vw;
-                }
-
-                #menu_temas {
-                    width: 10.5vw;
-                    right: 15vw;
-                }
-
-                #registroCambios{
-                    padding-left: 5vw;
-                }
-            }
-
-
-            @media (max-width: 600px)/* and (max-height: 850px) */{
-                #temaActual {
-                    width: 27vw;
-                }
-
-                #menu_temas {
-                    width: 27vw;
-                    right: 54vw;
-                }
-            }
-        </style>
     </head>
 
-    <body class="light" onload="iniciarPagina()">
-
-        <!--Cuerpo de la clase-->
-        <div class="jumbotron" id="cuerpo" style="overflow: hidden;">
-            <div class="container col-sm-4"><h1><strong>Índice Global:</strong></h1></div>
-            <div class="container text-center" id="creadorTabla" style="overflow: hidden;">
-                <div class="row col-sm-6">
-                    <div class="col"><h4>Total de clases cursadas (incluyendo las reprobadas):</h4></div>
-                    <div class="container col">
-                        <div class="talbe responsive">
-                            <table class="table" id="spinner">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <button id="menos" class="botonesDeSpinner" onclick="quitar()">-</button>
-                                        </td>
-                                        <td>
-                                            <input class="form-control" type="number" id="numeroDeClases" min="1" max="80" value="20" oninput="limitarDatos(this)">
-                                        </td>
-                                        <td>
-                                            <button id="mas" class="botonesDeSpinner" onclick="agregar()">+</button>
-                                        </td>
-                                    </tr> 
-                                </tbody>
-                                
-                            </table>
-                        </div>
-                    </div>
-                    
-                    <div class="container row" id="registroCambios">
-                        <p>Últimos cambios realizados: </p>
-                        <p id="lastChanges" style="font-style: italic;"></p>
-                    </div>
-
-                </div>
-                <div class="row justify-content-center" style="overflow: hidden;">
-                    <!--Tabla de Datos-->
-                    <div class="container col-sm-6">
-                        <div class="table responsive">
-                            <table class="table table-bordered" id="tabla">
-                                <thead>
-                                    <tr>
-                                        <th>Clase</th>
-                                        <th>Nota</th>
-                                        <th>UV</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="datos">
-                                    <tr>
-                                        <td>
-                                            <input class="form-control datosTabla" type="text" placeholder="Clase1" onkeyup="autoSave()" oninput="limpiarDatos(this)" style="font-style: italic;"/>
-                                        </td>
-                                        <td>
-                                            <input class="form-control datosTabla" type="number" min="0" max ="100" onkeyup="autoSave()" oninput="limitarDatos(this)"/>
-                                        </td>
-                                        <td>
-                                            <input class="form-control datosTabla" type="number" min="1" max="20" onkeyup="autoSave()" oninput="limitarDatos(this)"/>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!--Resultados-->
-                    <div class="container col-sm-4" style="overflow: hidden;">
-                        <div class="table responsive" id="resultados">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p>Índice Global:</p>
-                                            <input class="form-control" type="text" readonly ="true" id="indice" class="redondeado"/>
-                                            
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <p id="titulo">Redondeado:</p>
-                                            <input class="form-control" type="text" readonly="true" id="indiceRedondeado" class="redondeado"/>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <br><br>
-                        <div class="table responsive" id="miscelaneos" style="overflow: hidden;">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p style="color: var(--fcolor); font-weight: bold;">Tema Actual:</p>
-                                            <div style="overflow: hidden;">
-                                                <button onclick="showMenu()" id="temaActual">
-                                                    <img id="temaActualImg" src="recursos/light.png" alt="Tema Actual">
-                                                </button><br>
-                                                <ul id="menu_temas">
-                                                    <li onmouseover="previewTheme('light');" onclick="changeTheme('light')"><img class="dropdown-img" src="recursos/light.png" alt="Tema Claro"></li>
-                                                    <li onmouseover="previewTheme('dark');" onclick="changeTheme('dark')"><img class="dropdown-img" src="recursos/dark.png" alt="Tema Oscuro"></li>
-                                                    <li onmouseover="previewTheme('synthwave');" onclick="changeTheme('synthwave')"><img class="dropdown-img" src="recursos/synthwave.png" alt="Tema del 3020"></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <button type="button" onclick="calcularIndice()" id="botonCalcular">Calcular Índice Global</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label for="archivo" id="subir">Utilizar archivo CSV</label>
-                                            <input class="botones" type="file" id="archivo" oninput="extraerDeCSV()" style="display: none;"/>
-                                        </td>   
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="text" class="form-control col-sm-5" id="fileNameInput" placeholder="notas" oninput="limpiarDatos(this)"/><p id="terminacion">.csv</p>
-                                            <label for="guardar" id="bajar">Guardar datos como archivo CSV</label>
-                                            <button class="botones" type="button" onclick="guardar()" id="guardar" style="display: none;">Guardar tabla en archivo csv</button class="botones">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label for="google" id="sign-in" style="display: none;">Ingresar con una cuenta de Google</label>
-                                            <button class="botones" id="google" onclick="registrarUsuario()" style="display: none;"></button>
-                                            
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div id="logged-in" style="display: none; text-align: center !important;"></div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label for="logout" id="salir" style="display: none;">Cerrar Sesión</label>
-                                            <button type="button" onclick="quitarUsuarioActual()" id="logout" style="display: none;"></button>
-                                        </td>
-                                        <td>
-                                            <button type="button" id="recargar" onclick="recargarDatos()" style="display: none;">Cargar datos otra vez</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                        
-                    </div>
-
-                </div>
-
-
-            </div>
-            
-            
-            
-        </div>
-
-        <!--Barra de Navegación Escritorio-->
-        <div class="row fixed-bottom bg-dark" id="navbar-desktop">
-            <div style="width: 10%"><a href="informacion.html">
-                <img id="logo_info_desktop" src="recursos/info.png">
-            </a></div>
-            <div id="textoNormal" style="width: 20%;"><a>Índice:</a></div>
-            <div style="width: 35%;" id="seleccionado"><a href="index.html">Global</a></div>
-            <div style="width: 35%;"><a href="periodo.html">Periodo</a></div>
-        </div>
-
-        <!--Barra de Navegación Móvil-->
-        <div class="row fixed-bottom bg-dark" id="navbar-mobile">
-            <div style="width: 20%;"><a href="informacion.html">
-                <img id="logo_info_mobile" src="recursos/info.png">
-            </a></div>
-            <div id="textoNormal" style="width: 37%;"><a>Índice:</a></div>
-            <div style="width: 43%;">
-                <div class="dropup">
-                    <button type="button" value="Seleccionar" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="botonDeSeleccion"></button>
-                    <div class="dropdown-menu" id="opciones">
-                        <a class="dropdown-item" href="index.html" id="seleccionado">Global</a>
-                        <a class="dropdown-item" href="periodo.html">Periodo</a>
-                    </div>
-                </div>
+    <body>
+        <div id="root">
+            <div id="mainInfo">
+                <img src="project.png" alt="Icono en construcción">
+                <h1>Próximamente: <i>Portfolio Web de Josué Ariel Izaguirre</i></h1>
+                <h3>Si estabas buscando <a href="https://calculadoradeindice.web.app">Calculadora de Índice Académico</a>, he creado una nueva versión la cual puedes encontrar <a href="https://calculadoradeindice.web.app">aquí</a>. No te preocupes si tenías tus datos guardados con Google, los mismos son utilizados en la nueva versión.</h3>
             </div>
         </div>
-
-        <script>
-             function checkCurrentTheme(){
-                currentTheme = document.body.className;
-
-                newFolder = `recursos/${currentTheme}`;
-
-                logo_info_mobile.src = `${newFolder}/info.png`;
-                logo_info_desktop.src = `${newFolder}/info.png`;
-                temaActualImg.src = `recursos/${currentTheme}.png`;
-            }
-
-            function loadTheme(){
-
-                if(localStorage.getItem("theme")){
-                    document.body.className = localStorage.getItem("theme");
-                }
-            }
-
-            loadTheme();
-            checkCurrentTheme();
-
-            function changeTheme(themeName){
-                showMenu();
-                localStorage.setItem("theme", themeName);
-                document.body.className = localStorage.getItem("theme");
-                changes = localStorage.getItem("lastModified-global");
-                
-                if(servidor.usuarioActivo()){
-                    servidor.enviarDatos({"currentTheme":themeName, "lastModified-global": changes}, "global", "tema");
-                }
-                //saveTheme(localStorage.getItem("theme"));
-                checkCurrentTheme();
-            }
-
-            function previewTheme(themeName){
-                document.body.className = themeName;
-                checkCurrentTheme();
-            }
-
-            function showMenu(){
-                state = menu_temas.style.display;
-
-                if (state === "none"){
-                    menu_temas.style.display = "block";
-                }
-                else{
-                    menu_temas.style.display = "none";
-                }
-            }
-            checkCurrentTheme();
-        </script>
-
     </body>
 
 </html>
